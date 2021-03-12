@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mergesort Visualization Demo</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="static/lib/JSAV/css/JSAV.css" type="text/css" />
+  <link rel="stylesheet" href="static/lib/ODSA/odsaAV-min.css" type="text/css" />
+  <link rel="stylesheet" href="static/lib/ODSA/odsaStyle-min.css" type="text/css" />
+  <link rel="stylesheet" href="https://exp-iiith.vlabs.ac.in/styles/common-styles.css" type="text/css" />
+  <link rel="stylesheet" href="css/mergesortDemo.css" type="text/css" />
+</head>
+
+<body onload="handlers();">
+<div id="container">
+  <div class="instruction-box">
+    <button class="collapsible">Instructions</button>
+    <div class="content">
+        <ul>
+            <li><b>Select</b> the length of the array which you would like to sort in the select pane.</li>
+            <li>Enter the unsorted array where each elements are separated by commas in the input field.</li>
+            <li>Click <b>Setup</b> to draw the canvas and start the experiment.</li>
+            <li>Click <b>Next</b> to go ahead with the visualization.</li>
+            <li>Click on <b>Reset</b> to reset the experiment and start again.</li>
+        </ul>
+    </div>
+  </div>
+          
+  <div id="allInput">
+    <form id="ssperform" style="display: none">
+      <p>
+        <input id="run" type="button" name="run" />
+        <input id="reset" type="button" name="reset" />
+      </p>
+    </form>
+    <label id="arraysizeLabel" for="arraysize"></label>
+    <select id="arraysize"></select>
+    <label id="arrayValuesLabel" for="arrayValues"></label>
+    <input size="25" name="arrayValues" id="arrayValues" class="text-box" placeholder="Array Values" type="text" /> <br>
+    <button type="button" class="button-input" id="setup">Setup</button>
+    <button type="button" class="button-input" id="resetArt">Reset</button>
+    <button type="button" class="button-input" id="next">Next</button>
+  </div>
+
+  <div class="comment-box">
+    <b>Observations</b>
+    <p id="ins"> </p>
+  </div>
+
+  <div class="avcontainer">
+    <!--<span class="jsavcounter"></span>-->
+    <div style="display: none" class="jsavcontrols"></div>
+  </div> <!--avcontainer-->
+
+
+</div> <!--container-->
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="static/lib/JSAV/lib/jquery.transit.js"></script>
+<script src="static/lib/JSAV/build/JSAV-min.js"></script>
+<script src="static/lib/ODSA/odsaUtils-min.js"></script>
+<script src="static/lib/ODSA/odsaAV-min.js"></script>
+<script src="js/mergesortDemo.js"></script>
+<script src="https://ds1-iiith.vlabs.ac.in/exp-common-js/instruction-box.js"></script>
+<script>
+  function handlers(){
+    $("#setup").click(function() {
+      displayComment("")
+      commentsQueue = [];
+      $("#run").click();
+    });
+    $("#next").click(function() {
+      $(".jsavforward").click();
+      displayComment(commentsQueue.shift())
+    });
+    $("#resetArt").click(function() {
+      $("#reset").click();
+      displayComment("")
+      commentsQueue = [];
+    });
+
+    $("#setup").click();
+  }
+</script>
+</body>
+</html>

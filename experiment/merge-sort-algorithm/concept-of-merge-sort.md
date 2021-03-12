@@ -1,21 +1,12 @@
-## Divide and Conquer
+### The Merge Sort Algorithm
+The Merge Sort algorithm combines the split and merge step, to give us a sorted array.
 
-### Estimated Time
+    First, we keep splitting the array recursively, till we get all subarrays of size 1. Recall how we practiced this in the Split step
+    Then, once the array cannot be split further, we start tracing back on our Merge Sort tree
+    As we trace back, we keep merging the child subarrays and overwriting the parent subarrays by their sorted forms.
 
-15 minutes
-
-### The Divide and Conquer Paradigm 
-
-<iframe src="https://www.youtube.com/embed/59tlhDghFnA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-### Learning Objectives of this Module
-
-In this module, we will learn about :
-
- - What does divide and conquer mean and where it can be used.
-
- - How difficult problems can be solved by breaking them down into smaller subproblems.
-
- - How sorting can be done using the Divide and Conquer strategy.
-
-
+To get a better overview of how Merge Sort works, look at the video below and then play around with the demo artefact to gain more clarity!
+### Merge Sort Tree
+<img src="images/ms_img.png"/>
+### Merge Sort Video
+<iframe src="https://www.youtube.com/embed/JSceec-wEyw?start=4&end=79" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
