@@ -1,0 +1,183 @@
+{
+  "unit-type": "lu",
+  "label": "Mege Sort Experiment",
+  "basedir": ".",
+  "units": [
+    {
+      "unit-type": "aim"
+    },
+    {
+      "unit-type": "task",
+      "label": "Overview",
+      "content-type": "video",
+      "source": "overview.md",
+      "target": "overview.html"
+    },
+    {
+      "unit-type": "task",
+      "label": "Recap",
+      "content-type": "video",
+      "source": "recap.md",
+      "target": "recap.html"
+    },
+    {
+      "unit-type": "task",
+      "label": "Pre Test",
+      "content-type": "assesment",
+      "source": "pretest.js",
+      "target": "pretest.html"
+    },
+    {
+      "unit-type": "lu",
+      "label": "Divide and Conquer",
+      "basedir": "divide-and-conquer",
+      "units": [
+        {
+          "unit-type": "aim"
+        },
+        {
+          "unit-type": "task",
+          "label": "Overview",
+          "content-type": "video",
+          "source": "overview.md",
+          "target": "overview.html"
+        },
+	{
+          "unit-type": "task",
+          "label": "What is Divide and Conquer",
+          "content-type": "video",
+          "source": "what-is-divide-and-conquer.md",
+          "target": "what-is-divide-and-conquer.html"
+        },
+        {
+          "unit-type": "task",
+          "label": "Sorting as Divide and Conquer",
+          "content-type": "video",
+          "source": "sorting-as-a-d-and-c-problem.md",
+          "target": "sorting-as-a-d-and-c-problem.html"
+        },
+                
+	{
+         "unit-type": "task",
+         "label": "Quiz",
+         "content-type": "assesment",
+         "source": "divide-and-conquer-quiz.js",
+         "target": "divide-and-conquer-quiz.html"
+       }
+      
+      ]
+    },
+    {
+      "unit-type": "lu",
+      "label": "Merge Sort Algorithm",
+      "basedir": "merge-sort-algorithm",
+      "units": [
+        {
+          "unit-type": "aim"
+        },
+	{
+          "unit-type": "task",
+          "label": "Overview",
+          "content-type": "video",
+          "source": "overview.md",
+          "target": "overview.html"
+        },
+        {
+          "unit-type": "task",
+          "label": "Concept of Merge Sort",
+          "content-type": "video",
+          "source": "concept-of-merge-sort.md",
+          "target": "concept-of-merge-sort.html"
+        },
+        {
+          "unit-type": "task",
+          "label": "Demonstration of Merge Sort",
+          "content-type": "simulation",
+          "source": "simulation/mergesortDemo.html",
+          "target": "mergesortDemo.html"
+        },
+	{
+          "unit-type": "task",
+          "label": "Practice of Merge Sort",
+          "content-type": "simulation",
+          "source": "simulation/mergesortPractice.html",
+          "target": "mergesortPractice.html"
+        },
+	{
+          "unit-type": "task",
+          "label": "Exercise of Merge Sort",
+          "content-type": "simulation",
+          "source": "simulation/mergesortExercise.html",
+          "target": "mergesortExercise.html"
+        },
+        {
+         "unit-type": "task",
+         "label": "Quiz",
+         "content-type": "assesment",
+         "source": "merge-sort-quiz.js",
+         "target": "merge-sort-quiz.html"
+       }
+      ]
+    },
+        {
+      "unit-type": "lu",
+      "label": "Analysis",
+      "basedir": "analysis",
+      "units": [
+        {
+          "unit-type": "aim"
+        },
+	{
+          "unit-type": "task",
+          "label": "Overview",
+          "content-type": "video",
+          "source": "overview.md",
+          "target": "overview.html"
+        },
+        {
+          "unit-type": "task",
+          "label": "Time and Space Complexity",
+          "content-type": "video",
+          "source": "time-and-space-complexity.md",
+          "target": "time-and-space-complexity.html"
+        },
+        {
+          "unit-type": "task",
+          "label": "Stable and Comparison Sort",
+          "content-type": "video",
+          "source": "stable-and-comparison-sort.md",
+          "target": "stable-and-comparison-sort.html"
+        },
+       	{
+          "unit-type": "task",
+          "label": "Comparison with other Algorithms",
+          "content-type": "video",
+          "source": "comparison-with-other-algorithms.md",
+          "target": "comparison-with-other-algorithms.html"
+        },
+        {
+          "unit-type": "task",
+          "label": "Quiz",
+          "content-type": "assesment",
+          "source": "analysis-quiz.js",
+          "target": "analysis-quiz.js"
+        }
+      ]
+    },
+    {
+      "unit-type": "task",
+      "label": "Post Test",
+      "content-type": "assesment",
+      "source": "posttest.js",
+      "target": "posttest.html"
+    },
+       
+    {
+      "unit-type": "task",
+      "label": "Further Readings/References",
+      "content-type": "text",
+      "source": "further-reading-and-references.md",
+      "target": "further-reading-and-references.html"
+    }
+  ]
+}
