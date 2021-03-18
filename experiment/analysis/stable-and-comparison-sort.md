@@ -1,4 +1,4 @@
-## What is a Comparison Sort Algorithm?
+### What is a Comparison Sort Algorithm?
 
   -  A Comparison Sort is a sorting algorithm where the final order is determined only by comparisons between the input elements.
   -  In Merge Sort, the merge procedure chooses an item from one of two arrays after comparing the top items from both arrays.
