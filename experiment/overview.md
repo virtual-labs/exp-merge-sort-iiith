@@ -22,7 +22,7 @@ And above all, a curiosity to learn and explore..!
 ### Experiment Modules and their Weightage
 
 | Module  |Weightage  | Expectation  |   
-|---|---|---|---|---|
+|--------|----------|-----------------| 
 | Pre-Test  | 10%  |Solve All Questions   |  
 |Split   |20%   | Practice how to recursively split arrays  |  
 |Merge   |  20% | Practice how to merge sorted arrays  |   

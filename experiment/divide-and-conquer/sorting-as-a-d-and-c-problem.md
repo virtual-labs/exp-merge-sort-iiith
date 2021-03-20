@@ -1,5 +1,3 @@
-## Sorting as a Divide and Conquer Problem
-
 ### Can we perform Sorting using Divide and Conquer?
 
 - We can visualise sorting an array of size N as two subproblems : sorting two arrays of size N/2, and then somehow combining the two smaller sorted arrays. Sorting a smaller array will be easier than sorting the bigger array.

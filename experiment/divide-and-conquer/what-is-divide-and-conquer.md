@@ -1,5 +1,3 @@
-## What is Divide and Conquer
-
 ### Divide and Conquer Strategy
 <img src="images/div.png"/>
 
