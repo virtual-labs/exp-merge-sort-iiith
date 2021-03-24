@@ -84,7 +84,7 @@
         },
         {
           "unit-type": "task",
-          "label": "Concept of Merge Sort",
+          "label": "Concept",
           "content-type": "video",
           "source": "concept-of-merge-sort.md",
           "target": "concept-of-merge-sort.html"
