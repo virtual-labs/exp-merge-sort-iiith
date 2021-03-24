@@ -91,21 +91,21 @@
         },
         {
           "unit-type": "task",
-          "label": "Demonstration of Merge Sort",
+          "label": "Demo",
           "content-type": "simulation",
           "source": "simulation/mergesortDemo.html",
           "target": "mergesortDemo.html"
         },
 	{
           "unit-type": "task",
-          "label": "Practice of Merge Sort",
+          "label": "Practice",
           "content-type": "simulation",
           "source": "simulation/mergesortPractice.html",
           "target": "mergesortPractice.html"
         },
 	{
           "unit-type": "task",
-          "label": "Exercise of Merge Sort",
+          "label": "Exercise ",
           "content-type": "simulation",
           "source": "simulation/mergesortExercise.html",
           "target": "mergesortExercise.html"

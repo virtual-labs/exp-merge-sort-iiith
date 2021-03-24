@@ -1,6 +1,3 @@
-### Estimated Time
-
-15 minutes
 
 ### The Divide and Conquer Paradigm 
 
