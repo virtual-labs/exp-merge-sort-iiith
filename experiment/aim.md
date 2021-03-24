@@ -1,3 +1,6 @@
+### Estimated Time
+1 hour
+
 ### Learning Objectives of the Experiment
 
 
