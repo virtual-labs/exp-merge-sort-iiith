@@ -106,8 +106,8 @@
       answers: {
         a: "O(n log n)  ",                  ///// Write the option 1 inside double quotes
         b: "O(n2)",                  ///// Write the option 2 inside double quotes
-	a: "O(n2 log n)  ",                  ///// Write the option 1 inside double quotes
-        b: "O(n log n2)",                  ///// Write the option 2 inside double quotes
+	c: "O(n2 log n)  ",                  ///// Write the option 1 inside double quotes
+        d: "O(n log n2)",                  ///// Write the option 2 inside double quotes
               },
       correctAnswer: "a"                ///// Write the correct option inside double quotes
     },
@@ -117,8 +117,8 @@
       answers: {
         a: "O(1) ",                  ///// Write the option 1 inside double quotes
         b: "O(log n)",                  ///// Write the option 2 inside double quotes
-	a: " O(n)",                  ///// Write the option 1 inside double quotes
-        b: "O(n log n)",                  ///// Write the option 2 inside double quotes
+	c: " O(n)",                  ///// Write the option 1 inside double quotes
+        d: "O(n log n)",                  ///// Write the option 2 inside double quotes
               },
       correctAnswer: "c"                ///// Write the correct option inside double quotes
     },
