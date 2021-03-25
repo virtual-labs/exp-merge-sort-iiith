@@ -1,6 +1,4 @@
-### Estimated Time
 
-1 hour
 ### A Short Introduction to the Overall Experiment
 <iframe src="https://www.youtube.com/embed/tX4ncWkh5wk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
