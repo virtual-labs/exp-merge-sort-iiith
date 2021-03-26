@@ -1,4 +1,4 @@
-## Running Time of Merge Sort
+### Running Time of Merge Sort
 
 Lets assume that we are sorting n elements of a given array.
 
