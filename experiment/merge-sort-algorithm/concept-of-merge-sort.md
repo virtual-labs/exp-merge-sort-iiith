@@ -1,4 +1,7 @@
 ### The Merge Sort Algorithm
+<iframe src="https://www.youtube.com/embed/_RPG3nQqIcM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### The Merge Sort Algorithm
 The Merge Sort algorithm combines the split and merge step, to give us a sorted array.
 
    - First, we keep splitting the array recursively, till we get all subarrays of size 1. Recall how we practiced this in the Split step
