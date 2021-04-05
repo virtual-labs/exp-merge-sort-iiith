@@ -21,13 +21,6 @@
       "target": "recap.html"
     },
     {
-      "unit-type": "task",
-      "label": "Pre Test Quiz",
-      "content-type": "assesment",
-      "source": "pretest.js",
-      "target": "pretest.html"
-    },
-    {
       "unit-type": "lu",
       "label": "Divide and Conquer",
       "basedir": "divide-and-conquer",
@@ -49,16 +42,7 @@
           "content-type": "video",
           "source": "sorting-as-a-d-and-c-problem.md",
           "target": "sorting-as-a-d-and-c-problem.html"
-        },
-                
-	{
-         "unit-type": "task",
-         "label": "Quiz",
-         "content-type": "assesment",
-         "source": "divide-and-conquer-quiz.js",
-         "target": "divide-and-conquer-quiz.html"
-       }
-      
+        }
       ]
     },
     {
@@ -96,14 +80,7 @@
           "content-type": "simulation",
           "source": "simulation/mergesortExercise.html",
           "target": "mergesortExercise.html"
-        },
-        {
-         "unit-type": "task",
-         "label": "Quiz",
-         "content-type": "assesment",
-         "source": "merge-sort-quiz.js",
-         "target": "merge-sort-quiz.html"
-       }
+        }
       ]
     },
         {
@@ -141,23 +118,8 @@
           "content-type": "video",
           "source": "comparison-with-other-algorithms.md",
           "target": "comparison-with-other-algorithms.html"
-        },
-        {
-          "unit-type": "task",
-          "label": "Quiz",
-          "content-type": "assesment",
-          "source": "analysis-quiz.js",
-          "target": "analysis-quiz.html"
         }
-      ]
-    },
-    
-    {
-      "unit-type": "task",
-      "label": "Post Test Quiz",
-      "content-type": "assesment",
-      "source": "posttest.js",
-      "target": "posttest.html"
+ ]
     },
        
     {
