@@ -9,7 +9,6 @@
 
 .card {
     display: inline-block; 
-    font-size: 1.5vw;
     padding: 1.7%;
     margin: 0.05%;  
     color: white; 
@@ -35,7 +34,6 @@
 }
 
 #question {
-    font-size: 1.5vw;
     text-align: justify;
     padding-bottom: 2%;
 }
@@ -46,6 +44,5 @@
 }
 
 p,span {
-    font-size: 1.5vw;
     text-align: center;
 }
