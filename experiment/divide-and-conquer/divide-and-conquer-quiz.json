@@ -1,0 +1,33 @@
+{
+    "version": 2.0,
+    "questions": [
+        {
+            "question": "1. Which of the following sequences of steps best describes the divide and conquer strategy?",
+            "answers": {
+                "a": "Conquer \u2192 Divide \u2192 Combine",
+                "b": "Divide \u2192 Conquer \u2192 Combine",
+                "c": "Divide \u2192 Combine \u2192 Conquer",
+                "d": "Combine \u2192 Conquer \u2192 Divide"
+            },
+            "correctAnswer": "b",
+            "explanations": {
+                "b": "This strategy involves dividing the problem into independent subproblems followed by solving or \u2018conquering\u2019 each of those subproblems separately and finally combining the solutions into a final solution to the overall problem."
+            },
+            "difficulty": "na"
+        },
+        {
+            "question": "2. The subproblems in divide and conquer are solved _______.",
+            "answers": {
+                "a": "Dependently",
+                "b": "Concurrently",
+                "c": "Independently",
+                "d": "Parallely"
+            },
+            "correctAnswer": "b",
+            "explanations": {
+                "c": "The main advantage that this strategy provides is in the fact that the subproblems formulated during division can be solved independently from each other thus making the problem easier to tackle."
+            },
+            "difficulty": "na"
+        }
+    ]
+}
