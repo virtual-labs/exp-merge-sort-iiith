@@ -5,8 +5,8 @@
             "question": "1. Which of the following is not an array?",
             "answers": {
                 "a": "[1, 4, 3, 10]",
-                "b": "[\u201cA\u201d, True, \u201cYes\u201d, \u201cHello world\u201d]",
-                "c": "[\u201cTest\u201d, \u201cFalse\u201d, \u201cx\u201d, \u201chi\u201d]",
+                "b": "[“A”, True, “Yes”, “Hello world”] ",
+                "c": "[“Test”, “False”, “x”, “hi”]",
                 "d": "[True, False, False, True]"
             },
             "correctAnswer": "b",
@@ -26,7 +26,7 @@
                 "c": "900, 14, -100, -1",
                 "d": "100, 100, 10, 0"
             },
-            "correctAnswer": "b",
+            "correctAnswer": "d",
             "explanations": {
                 "a": "-8 and -17 must be swapped as -8 > -17 and -14 > -17.",
                 "b": "This array is in ascending order. It must be reversed to be the correct answer.",
@@ -51,6 +51,23 @@
                 "d": "This array is the right combination of the two arrays in ascending order as all elements are present from both the arrays in a sorted order."
             },
             "difficulty": "intermediate"
+        },
+        {
+            "question": "4. When dividing an array into equal sized partitions (as closely as possible), how does the time complexity of the overall algorithm vary with the number of partitions made per step (fixed number per step)? Note that the number of partitions directly affects the size of the partitions. Greater the number of partitions, the smaller each partition will be.",
+            "answers": {
+                "a": "Does not vary, i.e, is independent of the number of partitions made per step",
+                "b": "Depends on the situation",
+                "c": "Is inversely proportional, i.e, the time complexity decreases with increase in the number of partitions being made per step",
+                "d": "Is directly proportional, i.e, the time complexity increases with increase in the number of partitions being made per step"
+            },
+            "correctAnswer": "c",
+            "explanations": {
+                "a": "There is a correlation between the two, i.e, changing the number of partitions does affect the time complexity.",
+                "b": "The correlation between the two is fixed and does not vary with the array or any other factors, i.e, is independent of the situation.",
+                "c": "This can be understood by the fact that fewer division steps/operations are required. The number of division operations required is given by ceil(logb n) where ceil rounds up to the nearest integer, n is the array size and b is the number of partitions per step. This value only decreases with increase in the value of b and hence complexity decreases.",
+                "d": "The correlation is not direct. Increasing the number of partitions leads to a decrease in the number of division operations required which can not result in an increase in the time complexity."
+            },
+            "difficulty": "Advanced"
         }
     ]
 }
