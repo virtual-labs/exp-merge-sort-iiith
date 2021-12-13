@@ -44,7 +44,7 @@
             "difficulty": "intermediate"
         },
         {
-            "question": "What will be the maximum possible array size at the ith level of the merge sort tree for an array of size N (assume level indexing starts from 0, i.e, the original array at the root is said to be at the 0th level)? Fractional results will be rounded up to the nearest integer.",
+            "question": "4. What will be the maximum possible array size at the ith level of the merge sort tree for an array of size N (assume level indexing starts from 0, i.e, the original array at the root is said to be at the 0th level)? Fractional results will be rounded up to the nearest integer.",
             "answers": {
                 "a": "2^i * N",
                 "b": "i * N",

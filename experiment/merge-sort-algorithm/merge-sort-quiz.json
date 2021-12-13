@@ -2,7 +2,7 @@
     "version": 2.0,
     "questions": [
         {
-            "question": "1. Consider the following array:<br>A = [9, 100, -1, 4, 8, 6, 9]<br>Determine the number of iterations of division (same as the number of iterations of merging) as well as the total number of division operations that will be required for the above array.",
+            "question": "1. Consider the following array:<br>A = [9, 100, -1, 4, 8, 6, 9]<br>DDetermine the number of iterations of division (same as the number of iterations of merging) as well as the total number of division operations that will be required for the above array.",
             "answers": {
                 "a": "2 and 6",
                 "b": "3 and 6",
@@ -26,7 +26,7 @@
                 "c": "Merging",
                 "d": "None of the above"
             },
-            "correctAnswer": "b",
+            "correctAnswer": "c",
             "explanations": {
                 "a": "No sorting occurs during division. The array is simply repeatedly divided into sub-arrays until it is completely broken down into its individual elements in this step.",
                 "b": "No explicit/separate step exists for merging. We first recursively divide the array into subarrays until each subarray contains a single element and then recursively merge these subarrays. The sorting occurs during one of these steps itself.",
@@ -43,7 +43,7 @@
                 "c": "We alternate between the elements of the two sub-arrays, i.e, first we pick one element from the 1st sub-array and then pick another element at the same index in the other sub-array.",
                 "d": "None of the above."
             },
-            "correctAnswer": "c",
+            "correctAnswer": "b",
             "explanations": {
                 "a": "This would not work even though the two sub-arrays are sorted. It is not necessary that all the elements of the 1st sub-array are smaller than all the elements of the 2nd sub-array.",
                 "b": "This accurately fits the logic followed in the merge step. Since the sub-arrays are sorted already, we only have to compare 2 elements at each step (and not all the pairs of elements) and accordingly advance the index in the selected sub-array only.",
