@@ -2,8 +2,8 @@
 
 Lets assume that we are sorting n elements of a given array.
 
-  -  The **split** step, takes constant time, regardless of the subarray size, as this step just computes the midpoint of the array. We indicate constant time by **Θ(1)**.
-  -  The **merge** step merges a total of n elements, taking **Θ(n)** time.
+  -  The **split** step, takes constant time, regardless of the subarray size, as this step just computes the midpoint of the array. We indicate constant time by **O(1)**.
+  -  The **merge** step merges a total of n elements, taking **O(n)** time.
   -  To make things more concrete, let's say that the split and merge steps together take cn time for some constant c.
 
 ### Merging at Different Levels
@@ -26,7 +26,7 @@ So what is L? We start with subproblems of size N and repeatedly halve until we 
    - If **N = 2<sup>K<sup>** at level 0, then at level 1, each array is of size 2^(K-1). At level 2, each array is of size 2<sup>K-2</sup> and at level l, each array is of size 2<sup>K-l</sup>.
    - This implies that at the last level, since size of each array is 1, **2<sup>K-L</sup> = 1.**
    - This implies that **(K-L) = 0**. Hence, total levels (L) in the merge sort tree is K. And since N = 2<sup>K</sup>, **K = log<sub>2</sub>(N)**.
-   - Total running time of merge sort is **Θ(Nlog<sub>2</sub>N)**.
+   - Total running time of merge sort is **O(Nlog<sub>2</sub>N)**.
 
 ### Space Complexity of Merge Sort
 While merging two arrays, we require an auxillary space to temporarily store the merged array, before we plug this partially sorted array into the main array. Hence space complexity of Merge Sort is **O(N)**, as we require an auxillary array as big as the main input array.
