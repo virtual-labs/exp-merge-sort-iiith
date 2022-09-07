@@ -2,7 +2,7 @@
     "version": 2.0,
     "questions": [
         {
-            "question": "1. Consider the following array:<br>A = [9, 100, -1, 4, 8, 6, 9]<br>DDetermine the number of iterations of division (same as the number of iterations of merging) as well as the total number of division operations that will be required for the above array.",
+            "question": "1. Consider the following array:<br>A = [9, 100, -1, 4, 8, 6, 9]<br>Determine the number of iterations of division (same as the number of iterations of merging) as well as the total number of division operations that will be required for the above array.",
             "answers": {
                 "a": "2 and 6",
                 "b": "3 and 6",
