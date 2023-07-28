@@ -1,0 +1,70 @@
+{
+    "version": 2.0,
+    "questions": [
+        {
+            "question": "1. What will be the space complexity of the algorithm?",
+            "answers": {
+                "a": "O(N)",
+                "b": "O(2^N)",
+                "c": "O(1)",
+                "d": "O(N^2)"
+            },
+            "correctAnswer": "a",
+            "explanations": {
+                "a": "During the merge process an array with length equal to the sum of the lengths of the parts to be merged needs to be allocated to temporarily store the results. Since the size of this array is equal to the number of elements in the array parts to be merged, the space complexity will be O(N).",
+                "b": "While merging two arrays, we require an auxiliary space to temporarily store the merged array, before we plug this partially sorted array into the main array. However, the space is used much less than 2^N.",
+                "c": "Merge sort is not an inplace sorting algorithm, i.e, the sorting is not done on the original array itself. While merging two arrays, we require an auxiliary space to temporarily store the merged array, before we plug this partially sorted array into the main array.",
+                "d": "While merging two arrays, we require an auxiliary space to temporarily store the merged array, before we plug this partially sorted array into the main array. However, the space is used much less than N^2 as the same auxiliary space can be used for each of the subarrays instead of separate spaces."
+            },
+            "difficulty": "beginner"
+        },
+        {
+            "question": "2. Consider the following array:<br>A = [8, 7, -2, 4, 1, 100, 0, -1]<br>Which of the following subarray pairs are merged with each other during one of the merge operations (assume ascending order sort)?",
+            "answers": {
+                "a": "[-2, 4] and [1, 100]",
+                "b": "[7, 8] and [-2, 4]",
+                "c": "[8, 7] and [-2, 4]",
+                "d": "[1, 4] and [0, 100]"
+            },
+            "correctAnswer": "b",
+            "explanations": {
+                "a": "This is not possible as during the first division itself [-2, 4] and [1, 100] are separated into different subarrays of size 4 each. Merging must follow the reverse order of division and hence the two subarrays will only be together in the final merged array.",
+                "c": "This answer is wrong as the subarrays will be sorted during the merging of the individual elements into the arrays of size 2.",
+                "d": "This is not possible as during the first division itself 4 is separated from 1 into different subarrays of size 4 each. Merging must follow the reverse order of division and hence the two subarrays will only be together in the final merged array."
+            },
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "3. Why is the complexity of the algorithm N log (N)?",
+            "answers": {
+                "a": "N for the complexity of dividing the array into subarrays and log (N) for the number of times the division operation occurs.",
+                "b": "N for the complexity of merging subarrays and log (N) for the number of times the merge operation occurs.",
+                "c": "N for the number of times the division operation occurs and log (N) for the complexity of dividing the array into subarrays.",
+                "d": "N for the number of times the merge operation occurs and log (N) for the complexity of merging subarrays."
+            },
+            "correctAnswer": "b",
+            "explanations": {
+                "a": "Dividing the array does not take up any of the complexity as it takes constant time.",
+                "c": "Dividing the array does not take up any of the complexity as it takes constant time. Also, the number of division operations is lesser than N.",
+                "d": "Merging subarrays takes longer than log (N). Also, the number of merge operations is lesser N."
+            },
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "4. Consider the following array:<br>A = [0, -1, 100, 110, 1, 5]<br>Which of the following represents the steps in sorting the above array?",
+            "answers": {
+                "a": "[0, -1, 100, 110, 1, 5] \u2192 [0, -1, 100], [110, 1, 5] \u2192 [0], [-1, 100], [110], [1, 5] \u2192 [0], [-1], [100], [110], [1], [5] \u2192 [-1, 0], [100], [1, 110], [5] \u2192 [-1, 0, 100], [1, 5, 110] \u2192 [-1, 0, 1, 5, 100, 110]",
+                "b": "[0, -1, 100, 110, 1, 5] \u2192 [0, -1, 100], [110, 1, 5] \u2192 [0, -1], [100], [110, 1], [5] \u2192 [0], [-1], [100], [110], [1], [5] \u2192 [0], [-1, 100], [110], [1, 5] \u2192 [-1, 0, 100], [1, 5, 110] \u2192 [-1, 0, 1, 5, 100, 110]",
+                "c": "[0, -1, 100, 110, 1, 5] \u2192 [0, -1, 100], [110, 1, 5] \u2192 [0], [-1, 100], [110], [1, 5] \u2192 [0], [-1], [100], [110], [1], [5] \u2192 [0], [-1, 100], [110], [1, 5] \u2192 [-1, 0, 100], [1, 5, 110] \u2192 [-1, 0, 1, 5, 100, 110]",
+                "d": "[0, -1, 100, 110, 1, 5] \u2192 [0, -1, 100], [110, 1, 5] \u2192 [0], [-1, 100], [110, 1], [5] \u2192 [0], [-1], [100], [110], [1], [5] \u2192 [0], [-1, 100], [1, 110], [5] \u2192 [-1, 0, 100], [1, 5, 110] \u2192 [-1, 0, 1, 5, 100, 110]"
+            },
+            "correctAnswer": "c",
+            "explanations": {
+                "a": "Here the arrays are merged in the wrong order. First -1 and 100 should have been merged as the final division occurred on [-1, 100] and not [0, -1]. Similarly, 1 and 5 should have been merged first as the final division occurred on [1, 5] and not [110, 1].",
+                "b": "Here the arrays are merged in the wrong order. First 0 and -1 should have been merged as the final division occurred on [0, -1] and not [-1, 100]. Similarly, 110 and 1 should have been merged first as the final division occurred on [110, 1] and not [1, 5].",
+                "d": "Here the arrays are divided incorrectly. The first 3 element array is divided into arrays of sizes 1 and 2 in that order while the second 3 element array is divided into arrays of sizes 2 and 1 in that order. Either the second array should have been divided the same as the first, i.e, as arrays of sizes 1 and 2, or vice versa. The same applies for the order of merging, but then merging simply follows the order of division in reverse."
+            },
+            "difficulty": "advanced"
+        }
+    ]
+}
