@@ -2,6 +2,11 @@
   "unit-type": "lu",
   "label": "Mege Sort Experiment",
   "basedir": ".",
+  "code-assessment": {
+    "include": true,
+    "languages": ["javascript"],
+    "position": 6
+  },
   "units": [
     {
       "unit-type": "aim"
