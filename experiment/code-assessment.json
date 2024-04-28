@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "experiment name": "Experiment Name",
+    "problems": [
+        {
+            "problem name": "Merge Sort",
+            "description": "Implement the merge sort algorithm for the given input array",
+            "inputs": [
+                [2,5,1,15,22,19,100,81,70,149]
+            ],
+            "expected": [1,2,5,15,19,22,70,81,100,149],
+            "inputs description": "Input consists of an array of unsorted array - inp1. It may be of arbitrary length.",
+            "expected description": "An array of numbers Eg. 1,2,4,5 sorted in ascending orders"
+        }
+    ]
+}
