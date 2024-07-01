@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mergesort Proficiency Exercise</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="static/lib/JSAV/css/JSAV.css" type="text/css" />
+  <link rel="stylesheet" href="static/lib/ODSA/odsaAV-min.css" type="text/css" />
+  <link rel="stylesheet" href="static/lib/ODSA/odsaStyle-min.css" type="text/css" />
+  <link rel="stylesheet" href="../../assets/css/common-styles-responsive.css">
+  <link rel="stylesheet" href="css/mergesortExercise.css" type="text/css" />
+</head>
+
+<body onload="handlers();">
+<div id="parent">
+    <div class="instruction-box">
+                <button class="collapsible">Instructions</button>
+                <div class="content">
+                    <ul>
+                    <li>This artefact will test and reinforce your conceptual knowledge of the merge sort algorithm.</li>
+                    <li>Start at the bottom left and merge two single element arrays to form a sorted array. Repeat the merging process 
+                    as necessary until all elements have been merged into a single, sorted array.</li>
+                    <li>To merge, click an element to select it, then click the position where it should be in the sorted, merged array.</li>
+                    <li>This artefact will prompt you whenever you commit a mistake.</li>
+                    <li>Click on <b>Reset</b> if you want to practise again using different data to gain more experience.</li>
+                    </ul>
+                </div>
+    </div>
+    <div id="container">
+        <p class="jsavexercisecontrols" style="display: none"></p>
+        <form class="avcontainer">
+            <div id="arrays" class="jsavcanvas"></div>
+        </form>
+
+        <div id="allInput">
+            <button type="button" class="button-input" id="resetArt">Reset</button>
+        </div>
+    </div> 
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="static/lib/JSAV/lib/jquery.transit.js"></script>
+<script src="static/lib/JSAV/build/JSAV-min.js"></script>
+<script src="static/lib/ODSA/odsaUtils-min.js"></script>
+<script src="static/lib/ODSA/odsaAV-min.js"></script>
+<script src="js/mergesortExercise.js"></script>
+<script src="../../assets/js/instruction-box.js"></script>
+<script>
+    function handlers(){
+        $("#resetArt").click(function() {
+            $("[name='reset']").click();
+        })
+    }
+</script>
+<script src="../../assets/js/iframeResize.js"></script></body>
+</html>

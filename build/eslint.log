@@ -1,0 +1,283 @@
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/analysis/simulation/js/bubble_time.js
+   18:4   warning  Unnecessary semicolon                    no-extra-semi
+   19:2   warning  Unnecessary semicolon                    no-extra-semi
+   28:2   warning  Unnecessary semicolon                    no-extra-semi
+   37:4   warning  Unnecessary semicolon                    no-extra-semi
+   65:16  warning  'i' is already defined                   no-redeclare
+   70:11  warning  'ran' is already defined                 no-redeclare
+   72:16  warning  'i' is already defined                   no-redeclare
+   76:11  warning  'i' is already defined                   no-redeclare
+   87:2   warning  Unnecessary semicolon                    no-extra-semi
+  102:2   warning  Unnecessary semicolon                    no-extra-semi
+  124:2   warning  Unnecessary semicolon                    no-extra-semi
+  134:2   warning  Unnecessary semicolon                    no-extra-semi
+  139:10  warning  'opti_bubble' is defined but never used  no-unused-vars
+  172:2   warning  Unnecessary semicolon                    no-extra-semi
+  190:2   warning  Unnecessary semicolon                    no-extra-semi
+  204:2   warning  Unnecessary semicolon                    no-extra-semi
+  246:2   warning  Unnecessary semicolon                    no-extra-semi
+  261:2   warning  Unnecessary semicolon                    no-extra-semi
+  265:2   warning  Unnecessary semicolon                    no-extra-semi
+  268:2   warning  Unnecessary semicolon                    no-extra-semi
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/js/mergesortDemo.js
+    2:1   warning  'comments' is not defined                                 no-undef
+   17:1   warning  'commentsQueue' is not defined                            no-undef
+   20:7   warning  'displayComment' is assigned a value but never used       no-unused-vars
+   21:3   warning  '$' is not defined                                        no-undef
+   25:10  warning  'alert' is already defined as a built-in global variable  no-redeclare
+   25:10  warning  'alert' is defined but never used                         no-unused-vars
+   26:1   warning  '$' is not defined                                        no-undef
+   33:7   warning  'interpret' is assigned a value but never used            no-unused-vars
+   48:16  warning  'JSAV' is not defined                                     no-undef
+   48:21  warning  '$' is not defined                                        no-undef
+   58:7   warning  'commentsQueue' is not defined                            no-undef
+   58:26  warning  'comments' is not defined                                 no-undef
+   64:7   warning  'commentsQueue' is not defined                            no-undef
+   64:26  warning  'comments' is not defined                                 no-undef
+   70:21  warning  '$' is not defined                                        no-undef
+   93:7   warning  'commentsQueue' is not defined                            no-undef
+   93:26  warning  'comments' is not defined                                 no-undef
+  100:7   warning  'commentsQueue' is not defined                            no-undef
+  100:26  warning  'comments' is not defined                                 no-undef
+  118:7   warning  'commentsQueue' is not defined                            no-undef
+  118:26  warning  'comments' is not defined                                 no-undef
+  124:7   warning  'commentsQueue' is not defined                            no-undef
+  124:26  warning  'comments' is not defined                                 no-undef
+  143:5   warning  'commentsQueue' is not defined                            no-undef
+  143:24  warning  'comments' is not defined                                 no-undef
+  167:9   warning  'commentsQueue' is not defined                            no-undef
+  167:28  warning  'comments' is not defined                                 no-undef
+  179:11  warning  'commentsQueue' is not defined                            no-undef
+  179:30  warning  'comments' is not defined                                 no-undef
+  184:9   warning  'commentsQueue' is not defined                            no-undef
+  184:28  warning  'comments' is not defined                                 no-undef
+  211:7   warning  'commentsQueue' is not defined                            no-undef
+  211:26  warning  'comments' is not defined                                 no-undef
+  265:3   warning  '$' is not defined                                        no-undef
+  266:3   warning  '$' is not defined                                        no-undef
+  271:3   warning  '$' is not defined                                        no-undef
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/js/mergesortExercise.js
+    1:10  warning  'alert' is already defined as a built-in global variable    no-redeclare
+    1:10  warning  'alert' is defined but never used                           no-unused-vars
+    1:23  warning  'console' is already defined as a built-in global variable  no-redeclare
+    1:23  warning  'console' is defined but never used                         no-unused-vars
+    2:1   warning  '$' is not defined                                          no-undef
+    7:9   warning  'interpret' is assigned a value but never used              no-unused-vars
+   10:23  warning  '$' is not defined                                          no-undef
+   26:18  warning  'JSAV' is not defined                                       no-undef
+   26:23  warning  '$' is not defined                                          no-undef
+   39:7   warning  '$' is not defined                                          no-undef
+  444:21  warning  '$' is not defined                                          no-undef
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/js/realization.js
+  1:5  warning  'realizationCatalog' is assigned a value but never used  no-unused-vars
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/static/lib/JSAV/build/JSAV-min.js
+   109:15  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   206:10  warning  'JSAV' is already defined                                                  no-redeclare
+   206:16  warning  'jQuery' is already defined                                                no-redeclare
+   207:11  warning  '$' is defined but never used                                              no-unused-vars
+   390:10  warning  'JSAV' is already defined                                                  no-redeclare
+   390:16  warning  'jQuery' is already defined                                                no-redeclare
+   639:17  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   760:33  warning  'stp' is defined but never used                                            no-unused-vars
+   791:18  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   844:10  warning  'JSAV' is already defined                                                  no-redeclare
+   844:16  warning  'jQuery' is already defined                                                no-redeclare
+   916:9   warning  'val' is assigned a value but never used                                   no-unused-vars
+  1004:22  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1007:22  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1128:36  warning  'dataArr' is defined but never used                                        no-unused-vars
+  1151:11  warning  'min' is assigned a value but never used                                   no-unused-vars
+  1153:9   warning  'result' is assigned a value but never used                                no-unused-vars
+  1278:29  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1466:71  warning  Empty block statement                                                      no-empty
+  1618:21  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1640:44  warning  'item' is defined but never used                                           no-unused-vars
+  1860:23  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1921:10  warning  'JSAV' is already defined                                                  no-redeclare
+  1921:16  warning  'jQuery' is already defined                                                no-redeclare
+  1988:33  warning  'msg' is defined but never used                                            no-unused-vars
+  1988:38  warning  'options' is defined but never used                                        no-unused-vars
+  2110:10  warning  'JSAV' is already defined                                                  no-redeclare
+  2110:16  warning  'jQuery' is already defined                                                no-redeclare
+  2281:13  warning  'bottom' is already defined                                                no-redeclare
+  2437:21  warning  'JSAV' is already defined                                                  no-redeclare
+  2437:27  warning  'jQuery' is already defined                                                no-redeclare
+  2524:10  warning  'JSAV' is already defined                                                  no-redeclare
+  2524:16  warning  'jQuery' is already defined                                                no-redeclare
+  2524:24  warning  'Raphael' is already defined                                               no-redeclare
+  2526:16  warning  'R' is defined but never used                                              no-unused-vars
+  2545:27  warning  'options' is defined but never used                                        no-unused-vars
+  2571:45  warning  'options' is defined but never used                                        no-unused-vars
+  2584:21  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  2592:23  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  2609:26  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  2688:18  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3037:66  warning  'i' is defined but never used                                              no-unused-vars
+  3190:10  warning  'JSAV' is already defined                                                  no-redeclare
+  3190:16  warning  'jQuery' is already defined                                                no-redeclare
+  3190:24  warning  'Raphael' is already defined                                               no-redeclare
+  3294:36  warning  'options' is defined but never used                                        no-unused-vars
+  3303:34  warning  'options' is defined but never used                                        no-unused-vars
+  3373:23  warning  Unexpected negating the left operand of 'instanceof' operator              no-unsafe-negation
+  3410:21  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3703:53  warning  Unnecessary semicolon                                                      no-extra-semi
+  3715:34  warning  'options' is defined but never used                                        no-unused-vars
+  3718:36  warning  'options' is defined but never used                                        no-unused-vars
+  3758:11  warning  'JSAV' is already defined                                                  no-redeclare
+  3758:17  warning  'jQuery' is already defined                                                no-redeclare
+  3805:63  warning  Unexpected negating the left operand of 'instanceof' operator              no-unsafe-negation
+  3839:42  warning  'options' is defined but never used                                        no-unused-vars
+  3860:22  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3931:11  warning  'newli' is assigned a value but never used                                 no-unused-vars
+  3969:24  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3991:16  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  4003:11  warning  '$newElem' is assigned a value but never used                              no-unused-vars
+  4044:16  warning  'i' is already defined                                                     no-redeclare
+  4279:33  warning  '$lastItem' is defined but never used                                      no-unused-vars
+  4279:44  warning  'options' is defined but never used                                        no-unused-vars
+  4281:44  warning  'index' is defined but never used                                          no-unused-vars
+  4281:51  warning  'item' is defined but never used                                           no-unused-vars
+  4295:26  warning  'index' is defined but never used                                          no-unused-vars
+  4295:33  warning  'item' is defined but never used                                           no-unused-vars
+  4306:33  warning  'options' is defined but never used                                        no-unused-vars
+  4313:28  warning  'index' is defined but never used                                          no-unused-vars
+  4313:35  warning  'item' is defined but never used                                           no-unused-vars
+  4340:7   warning  'width' is assigned a value but never used                                 no-unused-vars
+  4359:33  warning  'item' is defined but never used                                           no-unused-vars
+  4385:10  warning  'JSAV' is already defined                                                  no-redeclare
+  4385:16  warning  'jQuery' is already defined                                                no-redeclare
+  4385:24  warning  'console' is already defined as a built-in global variable                 no-redeclare
+  4404:24  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  4469:9   warning  Unexpected negating the left operand of 'instanceof' operator              no-unsafe-negation
+  5153:16  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  5199:52  warning  'data' is defined but never used                                           no-unused-vars
+  5314:14  warning  Unexpected constant condition                                              no-constant-condition
+  5358:10  warning  'JSAV' is already defined                                                  no-redeclare
+  5358:16  warning  'jQuery' is already defined                                                no-redeclare
+  5372:24  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  5566:11  warning  'edge' is already defined                                                  no-redeclare
+  5567:23  warning  'edges' is already defined                                                 no-redeclare
+  5700:36  warning  'options' is defined but never used                                        no-unused-vars
+  5702:22  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  5833:10  warning  'JSAV' is already defined                                                  no-redeclare
+  5833:16  warning  'jQuery' is already defined                                                no-redeclare
+  5850:24  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  5987:7   warning  'opts' is assigned a value but never used                                  no-unused-vars
+  5992:9   warning  'toIndex' is assigned a value but never used                               no-unused-vars
+  6055:9   warning  Unexpected negating the left operand of 'instanceof' operator              no-unsafe-negation
+  6139:11  warning  'nodes' is already defined                                                 no-redeclare
+  6140:11  warning  'edges' is already defined                                                 no-redeclare
+  6143:9   warning  'i' is already defined                                                     no-redeclare
+  6143:12  warning  'e' is already defined                                                     no-redeclare
+  6350:51  warning  'options' is defined but never used                                        no-unused-vars
+  6351:9   warning  'layout' is assigned a value but never used                                no-unused-vars
+  6353:51  warning  'options' is defined but never used                                        no-unused-vars
+  6379:17  warning  'dagre' is not defined                                                     no-undef
+  6395:18  warning  'dagre' is not defined                                                     no-undef
+  6533:10  warning  'JSAV' is already defined                                                  no-redeclare
+  6533:16  warning  'jQuery' is already defined                                                no-redeclare
+  6533:24  warning  'console' is already defined as a built-in global variable                 no-redeclare
+  6538:7   warning  'getIndices' is assigned a value but never used                            no-unused-vars
+  6638:12  warning  'l' is defined but never used                                              no-unused-vars
+  6740:10  warning  'JSAV' is already defined                                                  no-redeclare
+  6740:16  warning  'jQuery' is already defined                                                no-redeclare
+  6964:40  warning  'options' is defined but never used                                        no-unused-vars
+  6987:25  warning  'options' is defined but never used                                        no-unused-vars
+  7100:13  warning  'newPos' is assigned a value but never used                                no-unused-vars
+  7126:26  warning  Unexpected negating the left operand of 'instanceof' operator              no-unsafe-negation
+  7257:43  warning  'options' is defined but never used                                        no-unused-vars
+  7260:45  warning  'options' is defined but never used                                        no-unused-vars
+  7392:10  warning  'JSAV' is already defined                                                  no-redeclare
+  7392:16  warning  'jQuery' is already defined                                                no-redeclare
+  7495:16  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  7618:10  warning  'JSAV' is already defined                                                  no-redeclare
+  7618:16  warning  'jQuery' is already defined                                                no-redeclare
+  7972:10  warning  'JSAV' is already defined                                                  no-redeclare
+  7972:16  warning  'jQuery' is already defined                                                no-redeclare
+  7972:24  warning  'console' is already defined as a built-in global variable                 no-redeclare
+  8163:11  warning  'studentSteps' is assigned a value but never used                          no-unused-vars
+  8430:15  warning  'modelAv' is assigned a value but never used                               no-unused-vars
+  8430:39  warning  'studentAv' is assigned a value but never used                             no-unused-vars
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/static/lib/JSAV/lib/jquery.transit.js
+  11:695  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  27:203  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  35:137  warning  'jQuery' is not defined                                                    no-undef
+  56:63   warning  Unnecessary escape character: \-                                           no-useless-escape
+  56:68   warning  Unnecessary escape character: \.                                           no-useless-escape
+  57:77   warning  Unnecessary escape character: \-                                           no-useless-escape
+  57:82   warning  Unnecessary escape character: \.                                           no-useless-escape
+  59:47   warning  'jQuery' is not defined                                                    no-undef
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/static/lib/JSAV/lib/raphael.js
+  1:54914  error  Parsing error: Deleting local variable in strict mode
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/static/lib/ODSA/odsaAV-min.js
+    2:10   warning  'alert' is already defined as a built-in global variable                   no-redeclare
+    2:23   warning  'console' is already defined as a built-in global variable                 no-redeclare
+    2:52   warning  'JSAV_OPTIONS' is defined but never used                                   no-unused-vars
+    2:66   warning  'JSAV_EXERCISE_OPTIONS' is defined but never used                          no-unused-vars
+  281:279  warning  'JSAV' is not defined                                                      no-undef
+  398:9    warning  'score' is already defined                                                 no-redeclare
+  408:11   warning  'jQuery' is not defined                                                    no-undef
+  415:31   warning  'data' is defined but never used                                           no-unused-vars
+  418:29   warning  'data' is defined but never used                                           no-unused-vars
+  479:14   warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  485:14   warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  489:11   warning  Redundant double negation                                                  no-extra-boolean-cast
+  546:9    warning  Redundant double negation                                                  no-extra-boolean-cast
+  547:32   warning  'e' is defined but never used                                              no-unused-vars
+  552:31   warning  'e' is defined but never used                                              no-unused-vars
+  564:3    warning  'jQuery' is not defined                                                    no-undef
+
+/Users/joey/Documents/VirtualLabs/Data-Structures-1/exp-merge-sort-iiith/experiment/merge-sort-algorithm/simulation/static/lib/ODSA/odsaUtils-min.js
+     2:10  warning  'alert' is already defined as a built-in global variable                   no-redeclare
+     2:10  warning  'alert' is defined but never used                                          no-unused-vars
+     2:23  warning  'console' is already defined as a built-in global variable                 no-redeclare
+    68:3   warning  'JSAV' is not defined                                                      no-undef
+    81:3   warning  'JSAV' is not defined                                                      no-undef
+    85:3   warning  'JSAV' is not defined                                                      no-undef
+    92:3   warning  'JSAV' is not defined                                                      no-undef
+   100:3   warning  'JSAV' is not defined                                                      no-undef
+   143:24  warning  'JSAV' is not defined                                                      no-undef
+   147:24  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   186:18  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   295:14  warning  'jQuery' is not defined                                                    no-undef
+   318:11  warning  're' is already defined                                                    no-redeclare
+   336:14  warning  'i' is already defined                                                     no-redeclare
+   380:25  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   386:14  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   406:20  warning  'JSAV' is not defined                                                      no-undef
+   412:14  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   422:17  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   459:75  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   472:49  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   511:32  warning  'JSAV' is not defined                                                      no-undef
+   519:31  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   542:99  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   545:39  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   576:28  warning  'JSAV' is not defined                                                      no-undef
+   578:31  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   581:42  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   581:79  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   593:18  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   691:26  warning  'JSAV' is not defined                                                      no-undef
+   774:18  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   884:7   warning  'jQuery' is not defined                                                    no-undef
+   894:11  warning  'data' is assigned a value but never used                                  no-unused-vars
+   898:29  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   910:42  warning  'eventList' is not defined                                                 no-undef
+   914:31  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   920:56  warning  'sessionKey' is not defined                                                no-undef
+  1079:36  warning  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1129:11  warning  'jQuery' is not defined                                                    no-undef
+  1183:3   warning  'jQuery' is not defined                                                    no-undef
+
+✖ 261 problems (1 error, 260 warnings)
+  0 errors and 18 warnings potentially fixable with the `--fix` option.
+
