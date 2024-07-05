@@ -3,14 +3,38 @@
     "experiment name": "Experiment Name",
     "problems": [
         {
-            "problem name": "Merge Sort",
+            "problem name": "Basic Merge Sort",
             "description": "Implement the merge sort algorithm for the given input array",
             "inputs": [
                 [2,5,1,15,22,19,100,81,70,149]
             ],
             "expected": [1,2,5,15,19,22,70,81,100,149],
-            "inputs description": "Input consists of an array of unsorted array - inp1. It may be of arbitrary length.",
-            "expected description": "An array of numbers Eg. 1,2,4,5 sorted in ascending orders"
+            "inputs description": "Input consists of an array of unsorted array. It may be of arbitrary length.",
+            "expected description": "An array of numbers e.g. 1,2,4,5 sorted in ascending orders",
+            "difficulty": "beginner"
+        },
+        {
+            "problem name": "Count Inversion Pairs using Merge Sort",
+            "description": "Modify the merge sort algorithm to count the number of inversions in the array. An inversion is a pair of indices (i, j) such that i < j and arr[i] > arr[j]",
+            "inputs": [
+                [10, 3, 7, 5, 2, 1]
+            ],
+            "expected": 13,
+            "inputs description": "The input is an array of integers representing the elements of the array. The array can be of any length.",
+            "expected description": "An integer representing the number of inversion pairs in the array.",
+            "difficulty": "beginner"
+        },
+        {
+            "problem name": "Sort Array By Parity using Merge Sort",
+            "description": "Modify the merge sort algorithm to sort an array such that all even numbers come before all odd numbers, while maintaining the relative order of even and odd numbers.",
+            "inputs": [
+                [10, 3, 5, 2, 8, 7, 6, 4, 1, 9]
+            ],
+            "expected": [10, 2, 8, 6, 4, 3, 5, 7, 1, 9],
+            "inputs description": "The input is an array of integers. The array can be of any length.",
+            "expected description": "An array where all even numbers are before all odd numbers, maintaining the relative order of even and odd numbers.",
+            "difficulty": "intermediate"
         }
+
     ]
 }
