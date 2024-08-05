@@ -1,0 +1,35 @@
+#container {
+  position: relative;
+  width: auto;
+  height: auto;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+.avcontainer{
+  overflow: visible;
+}
+
+.jsavarray {
+  position: absolute;
+}
+
+#allInput{
+  position: relative;
+  text-align: center ;
+  padding:2vh;
+}
+
+.comment-box {
+  margin-top: 1%;
+  min-height: 11vh;
+  width:auto;
+}
+
+select {
+  padding: 7px 20px;
+  margin-right: 30px ;
+  box-sizing: border-box;
+  width: 12%; 
+  margin-bottom: 10px;
+}
