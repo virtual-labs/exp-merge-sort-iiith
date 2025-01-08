@@ -61,7 +61,7 @@ $(document).ready(function() {
 
       
       //displayComment(comments["av_c2"]);
-      commentsQueue.push(comments["av_c2"])
+      // commentsQueue.push(comments["av_c2"])
       av.recorded(); // mark the end
     }
   }

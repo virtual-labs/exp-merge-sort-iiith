@@ -53,19 +53,19 @@
             "difficulty": "intermediate"
         },
         {
-            "question": "4. When dividing an array into equal sized partitions (as closely as possible), how does the time complexity of the overall algorithm vary with the number of partitions made per step (fixed number per step)? Note that the number of partitions directly affects the size of the partitions. Greater the number of partitions, the smaller each partition will be.",
+            "question": "4. When dividing an array into equal-sized partitions (as closely as possible), how does the number of partitioning rounds/iterations required vary with the number of partitions made per step (fixed number per step)? Note that the number of partitions directly affects the size of the partitions. Greater the number of partitions, the smaller each partition will be.",
             "answers": {
                 "a": "Does not vary, i.e, is independent of the number of partitions made per step",
                 "b": "Depends on the situation",
-                "c": "Is inversely proportional, i.e, the time complexity decreases with increase in the number of partitions being made per step",
-                "d": "Is directly proportional, i.e, the time complexity increases with increase in the number of partitions being made per step"
+                "c": "Is inversely proportional, i.e., the number of partitioning rounds/iterations decreases with an increase in the number of partitions being made per step",
+                "d": "Is directly proportional, i.e., the number of partitioning rounds/iterations increases with an increase in the number of partitions being made per step"
             },
             "correctAnswer": "c",
             "explanations": {
-                "a": "There is a correlation between the two, i.e, changing the number of partitions does affect the time complexity.",
+                "a": "There is a correlation between the two, i.e, changing the number of partitions does affect the number of partitioning rounds.",
                 "b": "The correlation between the two is fixed and does not vary with the array or any other factors, i.e, is independent of the situation.",
-                "c": "This can be understood by the fact that fewer division steps/operations are required. The number of division operations required is given by ceil(logb n) where ceil rounds up to the nearest integer, n is the array size and b is the number of partitions per step. This value only decreases with increase in the value of b and hence complexity decreases.",
-                "d": "The correlation is not direct. Increasing the number of partitions leads to a decrease in the number of division operations required which can not result in an increase in the time complexity."
+                "c": "When you increase the number of partitions made per step, each partitioning round reduces the size of the partitions more significantly. As a result, fewer partitioning rounds/iterations are required to reach the base case where each partition contains a single element or a small number of elements.",
+                "d": "The correlation is not direct. Increasing the number of partitions made per steps leads to a decrease in the number of partitioning rounds/iterations."
             },
             "difficulty": "Advanced"
         }
