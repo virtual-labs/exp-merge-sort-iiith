@@ -1,450 +1,644 @@
 /*global alert: true, console: true, ODSA */
-$(document).ready(function() {
-    "use strict";
-  
-    // Load the interpreter created by odsaAV.js
-    var config = ODSA.UTILS.loadConfig();
-    var interpret = config.interpreter;
-  
-    // Variables used by "setPosition()"
-    var canvasWidth = $("#container").width();     // The width of the display
-    var rowHeight = 70;        // Space required for each row to be displayed
-    var blockWidth = 32;       // The width of an array element
-  
-    // Variables used to keep track of the index and array of
-    // currently selected element
-    var mergeValueIndex = -1;
-    var mergeValueArr = null;
-  
-    // Settings for the AV
-    var settings = config.getSettings();
-  
-    var arraySize = 10,
-        initialArray = [],
-        userAnswerValue = [],
-        userAnswerDepth = [],
-        av = new JSAV($(".avcontainer"), {settings: settings}),
-        exercise;
-  
-    // Stores the various JSAV arrays created for the user to enter their solution
-    var arrays = {};
-  
-    av.recorded();   // we are not recording an AV with an algorithm
-  
+$(document).ready(function () {
+  "use strict";
 
-  
-    // Process the reset button
-    function initialize() {
-      // Clear all existing arrays
-      $("#arrays").html("");
-  
-      // Generate random numbers for the exercise
-      initialArray = [];
-      userAnswerValue = [];
-      userAnswerDepth = [];
-      for (var i = 0; i < arraySize; i++) {
-        var randomVal = Math.floor(Math.random() * 100);
-        initialArray[i] = randomVal;
-        userAnswerValue[i] = randomVal;
-      }
-  
-      // Log the initial state of the exercise
-      var initData = {};
-      initData.gen_array = initialArray;
-      ODSA.AV.logExerciseInit(initData);
-  
-      // Dynamically create arrays
-      arrays = {};
-      initArrays(0, initialArray.length - 1, 1, 1, userAnswerDepth, arrays, av);
-  
-      // Reset the merge variables
-      resetMergeVars();
-  
-      // Create arrays to store the user's answers and hide it because
-      // it simply maintains state and is not used for display purposes
-      // Need to record the order of the values and how deep in the
-      // recursion they are in order to ensure a correct answer
-      userAnswerValue = av.ds.array(userAnswerValue, {visible: false});
-      userAnswerDepth = av.ds.array(userAnswerDepth, {visible: false});
-  
-      av.forward();
-      av._undo = [];
-      return [userAnswerValue, userAnswerDepth];
+  // Load the interpreter created by odsaAV.js
+  var config = ODSA.UTILS.loadConfig();
+  var interpret = config.interpreter;
+
+  $(".collapsible").on("click", function () {
+    $(this).toggleClass("active");
+    var content = $(this).next(".content");
+    content.slideToggle(200);
+  });
+
+  $("#getAnswer").on("click", function () {
+    var answer = getModelAnswer();
+    $("#answerBox").html(answer).show();
+    $("#answerBox")[0].scrollTop = 0;
+  });
+
+  $("#resetBtn, #resetArt").on("click", function () {
+    $("#answerBox").hide();
+    $("#successBox").hide();
+  });
+
+  function getModelAnswer() {
+    // Show the sequence of clicks (merge steps) for merge sort
+    if (!window.initialArray || !Array.isArray(window.initialArray)) {
+      return "Model answer unavailable.";
     }
-  
-    // Create the model solution, which is used for grading the exercise
-    // - We must track the value at each horizontal position and vertical
-    //   position (depth) to ensure each element is sorted in the correct order
-    function modelSolution(jsav) {
-      var depth = 1;
-      var modelDepthArr = [];
-      var modelArrays = {};
-      initArrays(0, initialArray.length - 1, depth, 1, modelDepthArr, modelArrays, jsav);
-      var modelArr = jsav.ds.array(initialArray, {
-        indexed: true,
-        visible: false
-      });
-      modelDepthArr = jsav.ds.array(modelDepthArr, {
-        indexed: true,
-        visible: false
-      });
-      jsav.displayInit();
-  
-      var temp = [];
-      mergeSort(jsav, modelArr, temp, modelDepthArr, 0,
-                initialArray.length - 1, depth, 1, modelArrays);
-      return [modelArr, modelDepthArr];
-    }
-  
-    // Dynamically and recursively create the necessary arrays
-    // Initialize all single element arrays to contain the appropriate
-    // numbers from the initialArray and all other arrays to be empty
-    function initArrays(left, right, level, column, depthArray, container, jsav) {
-      var numElements = right - left + 1;
-      var contents = new Array(numElements);
-      var isModelAnswer = jsav !== av;
-  
-      // Set the contents for single element arrays
-      if (numElements === 1) {
-        contents = [initialArray[left]];
-      }
-  
-      // Dynamically create and position arrays
-      var arr = jsav.ds.array(contents,
-                              {indexed: true, center: false, layout: "array"});
-  
-      var id = "array_" + level + "_" + column;
-      if (isModelAnswer) {
-        id = "model_" + id;
-      }
-      container[id] = arr;
-  
-      // Set array attributes
-      arr.element.attr("id", id);
-      arr.element.attr("data-offset", left);
-      setPosition(arr, level, column);
-  
-      // Attach the click handler to the array
-      if (!isModelAnswer) { // don't attach click handlers for model answer
-        arr.click(function(index) { clickHandler(this, index); });
-      }
-  
-      if (left === right) {
-        depthArray[left] = level;
-        return;
-      }
-  
-      var mid = Math.floor((left + right) / 2);
-      // Recurse, passing the appropriate arguments necessary for
-      // setPosition() to the next function call
-      initArrays(left, mid, level + 1, 2 * column - 1, depthArray, container, jsav);
-      initArrays(mid + 1, right, level + 1, 2 * column, depthArray, container, jsav);
-    }
-  
-    // Calculate and set the appropriate "top" and "left" CSS values based
-    // on the specified array's level of recursion, column number and the
-    // number of elements in the array
-    // arr - the JSAV array to set the "top" and "left" values for
-    // level - the level of recursion, the full-size array is level 1
-    // column - the array's column number in the current row
-    function setPosition(arr, level, column) {
-      // Calculate the number of arrays in the current row
-      var numArrInRow = Math.pow(2, level - 1);
-  
-      // Calculate the left value of the current array by dividing
-      // the width of the canvas by twice the number of arrays that should
-      // appear in that row: (canvasWidth / (2 * numArrInRow))
-      // Odd multiples of the resulting value define a line through the center
-      // of each array in the row, found using the formula (2 * column - 1)
-      // Note: while it is not used, even multiples define the center between
-      // two consecutive arrays. Since we want the left value rather than the
-      // center value of each array we calculate the length each array
-      // (blockWidth *  arr.size()), divide this value in half and
-      // subtract it from the center line to find the left value
-      var elementLeft = (canvasWidth / (2 * numArrInRow)) * (2 * column - 1) -
-                        (blockWidth * arr.size() / 2),
-          elementTop = rowHeight * (level - 1);
-  
-      // Set the top and left values so that all arrays are spaced properly
-      arr.element.css({left: elementLeft, top: elementTop});
-    }
-  
-    // Generate the model answer (called by modelSolution())
-    function mergeSort(jsav, modelArray, temp, depthArray, l, r, depth, column, container) {
-      // Record the depth and return when list has one element
-      if (l === r) {
-        depthArray.value(l, depth);
-        return;
-      }
-  
-      // Select midpoint
-      var mid = Math.floor((l + r) / 2);
-  
-      // Mergesort first half
-      mergeSort(jsav, modelArray, temp, depthArray, l, mid, depth + 1, column * 2 - 1, container);
-      // Mergesort second half
-      mergeSort(jsav, modelArray, temp, depthArray, mid + 1, r, depth + 1, column * 2, container);
-  
-      // Copy subarray into temp
-      for (var i = l; i <= r; i++) {
-        temp[i] = modelArray.value(i);
-      }
-  
-      // Do the merge operation back to the array
-      var i1 = l;
-      var i2 = mid + 1;
-      var currArray = container["model_array_" + depth + "_" + column];
-      var lArray = container["model_array_" + (depth + 1) + "_" + (column * 2 - 1)];
-      var rArray = container["model_array_" + (depth + 1) + "_" + (column * 2)];
-      for (var curr = l; curr <= r; curr++) {
-        if (i1 === mid + 1) {          // Left sublist exhausted
-          jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
-          modelArray.value(curr, temp[i2++]);
-        } else if (i2 > r) {             // Right sublist exhausted
-          jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
-          modelArray.value(curr, temp[i1++]);
-        } else if (temp[i1] < temp[i2]) { // Get smaller
-          jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
-          modelArray.value(curr, temp[i1++]);
+    var arr = window.initialArray.slice();
+    var steps = [];
+
+    // Helper to record the merge steps
+    function mergeSortWithSteps(subArr, leftIdx) {
+      if (subArr.length <= 1)
+        return subArr.map((v, i) => ({ val: v, idx: leftIdx + i }));
+      var mid = Math.floor(subArr.length / 2);
+      var left = mergeSortWithSteps(subArr.slice(0, mid), leftIdx);
+      var right = mergeSortWithSteps(subArr.slice(mid), leftIdx + mid);
+      var merged = [];
+      var i = 0,
+        j = 0,
+        k = 0;
+      var mergeStart = leftIdx;
+      while (i < left.length && j < right.length) {
+        if (left[i].val < right[j].val) {
+          steps.push(
+            `Click value ${left[i].val} (index ${left[i].idx + 1}) → position ${
+              mergeStart + k + 1
+            }`
+          );
+          merged.push({ val: left[i].val, idx: mergeStart + k });
+          i++;
         } else {
-          jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
-          modelArray.value(curr, temp[i2++]);
+          steps.push(
+            `Click value ${right[j].val} (index ${
+              right[j].idx + 1
+            }) → position ${mergeStart + k + 1}`
+          );
+          merged.push({ val: right[j].val, idx: mergeStart + k });
+          j++;
         }
-  
-        if (i1 === mid + 1) {
-          lArray.hide();
-        }
-        if (i2 > r) {
-          rArray.hide();
-        }
-  
-        // Update the depth of each number being merged
-        depthArray.value(curr, depth);
-        jsav.stepOption("grade", true);
-        jsav.step();
+        k++;
       }
+      while (i < left.length) {
+        steps.push(
+          `Click value ${left[i].val} (index ${left[i].idx + 1}) → position ${
+            mergeStart + k + 1
+          }`
+        );
+        merged.push({ val: left[i].val, idx: mergeStart + k });
+        i++;
+        k++;
+      }
+      while (j < right.length) {
+        steps.push(
+          `Click value ${right[j].val} (index ${right[j].idx + 1}) → position ${
+            mergeStart + k + 1
+          }`
+        );
+        merged.push({ val: right[j].val, idx: mergeStart + k });
+        j++;
+        k++;
+      }
+      return merged;
+    }
+
+    mergeSortWithSteps(arr, 0);
+    return (
+      `<div style='max-height:140px;overflow-y:auto;'><b>Sequence of clicks to solve:</b><br><ol style='padding-left:20px;'>` +
+      steps.map((s) => `<li>${s}</li>`).join("") +
+      `</ol></div>`
+    );
+  }
+
+  var canvasWidth = $("#container").width(); // The width of the display
+  var rowHeight = 70; // Space required for each row to be displayed
+  var blockWidth = 32; // The width of an array element
+
+  var mergeValueIndex = -1;
+  var mergeValueArr = null;
+
+  var settings = config.getSettings();
+
+  var arraySize = 10,
+    initialArray = [],
+    userAnswerValue = [],
+    userAnswerDepth = [],
+    av = new JSAV($(".avcontainer"), { settings: settings }),
+    exercise;
+
+  // Stores the various JSAV arrays created for the user to enter their solution
+  var arrays = {};
+
+  av.recorded();
+
+  // Process the reset button
+  function initialize() {
+    // Clear all existing arrays
+    $("#arrays").html("");
+
+    // Generate random numbers for the exercise
+    initialArray = [];
+    userAnswerValue = [];
+    userAnswerDepth = [];
+    for (var i = 0; i < arraySize; i++) {
+      var randomVal = Math.floor(Math.random() * 100);
+      initialArray[i] = randomVal;
+      userAnswerValue[i] = randomVal;
+    }
+
+    window.initialArray = initialArray.slice();
+
+    // Log the initial state of the exercise
+    var initData = {};
+    initData.gen_array = initialArray;
+    ODSA.AV.logExerciseInit(initData);
+
+    // Dynamically create arrays
+    arrays = {};
+    initArrays(0, initialArray.length - 1, 1, 1, userAnswerDepth, arrays, av);
+
+    // Reset the merge variables
+    resetMergeVars();
+
+    // Create arrays to store the user's answers and hide it because
+    // it simply maintains state and is not used for display purposes
+    // Need to record the order of the values and how deep in the
+    // recursion they are in order to ensure a correct answer
+    userAnswerValue = av.ds.array(userAnswerValue, { visible: false });
+    userAnswerDepth = av.ds.array(userAnswerDepth, { visible: false });
+
+    av.forward();
+    av._undo = [];
+    return [userAnswerValue, userAnswerDepth];
+  }
+
+  // Create the model solution, which is used for grading the exercise
+  // - We must track the value at each horizontal position and vertical
+  //   position (depth) to ensure each element is sorted in the correct order
+  function modelSolution(jsav) {
+    var depth = 1;
+    var modelDepthArr = [];
+    var modelArrays = {};
+    initArrays(
+      0,
+      initialArray.length - 1,
+      depth,
+      1,
+      modelDepthArr,
+      modelArrays,
+      jsav
+    );
+    var modelArr = jsav.ds.array(initialArray, {
+      indexed: true,
+      visible: false,
+    });
+    modelDepthArr = jsav.ds.array(modelDepthArr, {
+      indexed: true,
+      visible: false,
+    });
+    jsav.displayInit();
+
+    var temp = [];
+    mergeSort(
+      jsav,
+      modelArr,
+      temp,
+      modelDepthArr,
+      0,
+      initialArray.length - 1,
+      depth,
+      1,
+      modelArrays
+    );
+    return [modelArr, modelDepthArr];
+  }
+
+  // Dynamically and recursively create the necessary arrays
+  // Initialize all single element arrays to contain the appropriate
+  // numbers from the initialArray and all other arrays to be empty
+  function initArrays(left, right, level, column, depthArray, container, jsav) {
+    var numElements = right - left + 1;
+    var contents = new Array(numElements);
+    var isModelAnswer = jsav !== av;
+
+    // Set the contents for single element arrays
+    if (numElements === 1) {
+      contents = [initialArray[left]];
+    }
+
+    // Dynamically create and position arrays
+    var arr = jsav.ds.array(contents, {
+      indexed: true,
+      center: false,
+      layout: "array",
+    });
+
+    var id = "array_" + level + "_" + column;
+    if (isModelAnswer) {
+      id = "model_" + id;
+    }
+    container[id] = arr;
+
+    // Set array attributes
+    arr.element.attr("id", id);
+    arr.element.attr("data-offset", left);
+    setPosition(arr, level, column);
+
+    // Attach the click handler to the array
+    if (!isModelAnswer) {
+      // don't attach click handlers for model answer
+      arr.click(function (index) {
+        clickHandler(this, index);
+      });
+    }
+
+    if (left === right) {
+      depthArray[left] = level;
       return;
     }
-  
-    // Fixstate method for continuous feedback/fix mode
-    // Uses the difference between the model and user depth array to determine
-    // the absolute index and row where a value should be placed.
-    // Determine the relative destination index and which column the destination array is in.
-    // Find the destination array's two sublists and the first remaining element in each.
-    // Compare these values to determine which should be moved to the destination array.
-    // Call 'clickHandler' with the appropriate calculated values to select the element to move
-    // and call it again to move it to the destination.
-    function fixState(modelState) {
-      // Pull the model array and state variables out of the modelState argument
-      var modelArr = modelState[0];
-      var modelDepthArr = modelState[1];
-      var i;
-  
-      // Find the absolute index where the correct value
-      // will be placed and which level it belongs in
-      var destIndex = 0;
-      var destDepth = 0;
-      for (i = 0; i < modelDepthArr.size(); i++) {
-        if (modelDepthArr.value(i) !== userAnswerDepth.value(i)) {
-          destIndex = i;
-          destDepth = modelDepthArr.value(i);
-          break;
-        }
+
+    var mid = Math.floor((left + right) / 2);
+    // Recurse, passing the appropriate arguments necessary for
+    // setPosition() to the next function call
+    initArrays(
+      left,
+      mid,
+      level + 1,
+      2 * column - 1,
+      depthArray,
+      container,
+      jsav
+    );
+    initArrays(
+      mid + 1,
+      right,
+      level + 1,
+      2 * column,
+      depthArray,
+      container,
+      jsav
+    );
+  }
+
+  // Calculate and set the appropriate "top" and "left" CSS values based
+  // on the specified array's level of recursion, column number and the
+  // number of elements in the array
+  // arr - the JSAV array to set the "top" and "left" values for
+  // level - the level of recursion, the full-size array is level 1
+  // column - the array's column number in the current row
+  function setPosition(arr, level, column) {
+    // Calculate the number of arrays in the current row
+    var numArrInRow = Math.pow(2, level - 1);
+
+    // Calculate the left value of the current array by dividing
+    // the width of the canvas by twice the number of arrays that should
+    // appear in that row: (canvasWidth / (2 * numArrInRow))
+    // Odd multiples of the resulting value define a line through the center
+    // of each array in the row, found using the formula (2 * column - 1)
+    // Note: while it is not used, even multiples define the center between
+    // two consecutive arrays. Since we want the left value rather than the
+    // center value of each array we calculate the length each array
+    // (blockWidth *  arr.size()), divide this value in half and
+    // subtract it from the center line to find the left value
+    var elementLeft =
+        (canvasWidth / (2 * numArrInRow)) * (2 * column - 1) -
+        (blockWidth * arr.size()) / 2,
+      elementTop = rowHeight * (level - 1);
+
+    // Set the top and left values so that all arrays are spaced properly
+    arr.element.css({ left: elementLeft, top: elementTop });
+  }
+
+  // Generate the model answer (called by modelSolution())
+  function mergeSort(
+    jsav,
+    modelArray,
+    temp,
+    depthArray,
+    l,
+    r,
+    depth,
+    column,
+    container
+  ) {
+    // Record the depth and return when list has one element
+    if (l === r) {
+      depthArray.value(l, depth);
+      return;
+    }
+
+    // Select midpoint
+    var mid = Math.floor((l + r) / 2);
+
+    // Mergesort first half
+    mergeSort(
+      jsav,
+      modelArray,
+      temp,
+      depthArray,
+      l,
+      mid,
+      depth + 1,
+      column * 2 - 1,
+      container
+    );
+    // Mergesort second half
+    mergeSort(
+      jsav,
+      modelArray,
+      temp,
+      depthArray,
+      mid + 1,
+      r,
+      depth + 1,
+      column * 2,
+      container
+    );
+
+    // Copy subarray into temp
+    for (var i = l; i <= r; i++) {
+      temp[i] = modelArray.value(i);
+    }
+
+    // Do the merge operation back to the array
+    var i1 = l;
+    var i2 = mid + 1;
+    var currArray = container["model_array_" + depth + "_" + column];
+    var lArray =
+      container["model_array_" + (depth + 1) + "_" + (column * 2 - 1)];
+    var rArray = container["model_array_" + (depth + 1) + "_" + column * 2];
+    for (var curr = l; curr <= r; curr++) {
+      if (i1 === mid + 1) {
+        // Left sublist exhausted
+        jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
+        modelArray.value(curr, temp[i2++]);
+      } else if (i2 > r) {
+        // Right sublist exhausted
+        jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
+        modelArray.value(curr, temp[i1++]);
+      } else if (temp[i1] < temp[i2]) {
+        // Get smaller
+        jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
+        modelArray.value(curr, temp[i1++]);
+      } else {
+        jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
+        modelArray.value(curr, temp[i2++]);
       }
-  
-      // Determine the correct column and the relative index where
-      // the correct answer will be placed
-      var destColumn = 1;
-      var left = 0;
-      var right = modelArr.size() - 1;
-      var mid = 0;
-  
-      for (i = 0; i < destDepth - 1; i++) {
-        mid = Math.floor((left + right) / 2);
-  
-        if (destIndex <= mid) {
-          right = mid;
-          destColumn = 2 * destColumn - 1;
-        } else {
-          left = mid + 1;
-          destColumn = 2 * destColumn;
-        }
-  
+
+      if (i1 === mid + 1) {
+        lArray.hide();
       }
-  
-      destIndex -= left;
-  
-  
-      // Get the sub arrays from the hash of JSAV arrays
-      var subArr1 = arrays["array_" + (destDepth + 1) + "_" + (2 * destColumn - 1)];
-      var subArr2 = arrays["array_" + (destDepth + 1) + "_" + (2 * destColumn)];
-  
-      // Get the index of the first non-empty element in each sublist
-      var subArr1Idx = -1;
-      var subArr2Idx = -1;
-      for (i = 0; i < subArr1.size(); i++) {
-        if (subArr1.value(i) !== "") {
-          subArr1Idx = i;
-          break;
-        }
+      if (i2 > r) {
+        rArray.hide();
       }
-  
-      for (i = 0; i < subArr2.size(); i++) {
-        if (subArr2.value(i) !== "") {
-          subArr2Idx = i;
-          break;
-        }
+
+      // Update the depth of each number being merged
+      depthArray.value(curr, depth);
+      jsav.stepOption("grade", true);
+      jsav.step();
+    }
+    return;
+  }
+
+  // Fixstate method for continuous feedback/fix mode
+  // Uses the difference between the model and user depth array to determine
+  // the absolute index and row where a value should be placed.
+  // Determine the relative destination index and which column the destination array is in.
+  // Find the destination array's two sublists and the first remaining element in each.
+  // Compare these values to determine which should be moved to the destination array.
+  // Call 'clickHandler' with the appropriate calculated values to select the element to move
+  // and call it again to move it to the destination.
+  function fixState(modelState) {
+    // Pull the model array and state variables out of the modelState argument
+    var modelArr = modelState[0];
+    var modelDepthArr = modelState[1];
+    var i;
+
+    // Find the absolute index where the correct value
+    // will be placed and which level it belongs in
+    var destIndex = 0;
+    var destDepth = 0;
+    for (i = 0; i < modelDepthArr.size(); i++) {
+      if (modelDepthArr.value(i) !== userAnswerDepth.value(i)) {
+        destIndex = i;
+        destDepth = modelDepthArr.value(i);
+        break;
       }
-  
-      var srcArr;
-      var srcIndex;
-      if (subArr1Idx > -1 && subArr2Idx > -1) {
-        if (subArr2.value(subArr2Idx) < subArr1.value(subArr1Idx)) {
-          // First element of the second sublist is smallest
-          srcArr = subArr2;
-          srcIndex = subArr2Idx;
-        } else {
-          // First element of the first sublist is smallest
-          srcArr = subArr1;
-          srcIndex = subArr1Idx;
-        }
-      } else if (subArr1Idx > -1) {
-        // Right sublist if exhausted
-        srcArr = subArr1;
-        srcIndex = subArr1Idx;
-      } else if (subArr2Idx > -1) {
-        // Left sublist is exhausted
+    }
+
+    // Determine the correct column and the relative index where
+    // the correct answer will be placed
+    var destColumn = 1;
+    var left = 0;
+    var right = modelArr.size() - 1;
+    var mid = 0;
+
+    for (i = 0; i < destDepth - 1; i++) {
+      mid = Math.floor((left + right) / 2);
+
+      if (destIndex <= mid) {
+        right = mid;
+        destColumn = 2 * destColumn - 1;
+      } else {
+        left = mid + 1;
+        destColumn = 2 * destColumn;
+      }
+    }
+
+    destIndex -= left;
+
+    // Get the sub arrays from the hash of JSAV arrays
+    var subArr1 =
+      arrays["array_" + (destDepth + 1) + "_" + (2 * destColumn - 1)];
+    var subArr2 = arrays["array_" + (destDepth + 1) + "_" + 2 * destColumn];
+
+    // Get the index of the first non-empty element in each sublist
+    var subArr1Idx = -1;
+    var subArr2Idx = -1;
+    for (i = 0; i < subArr1.size(); i++) {
+      if (subArr1.value(i) !== "") {
+        subArr1Idx = i;
+        break;
+      }
+    }
+
+    for (i = 0; i < subArr2.size(); i++) {
+      if (subArr2.value(i) !== "") {
+        subArr2Idx = i;
+        break;
+      }
+    }
+
+    var srcArr;
+    var srcIndex;
+    if (subArr1Idx > -1 && subArr2Idx > -1) {
+      if (subArr2.value(subArr2Idx) < subArr1.value(subArr1Idx)) {
+        // First element of the second sublist is smallest
         srcArr = subArr2;
         srcIndex = subArr2Idx;
       } else {
+        // First element of the first sublist is smallest
+        srcArr = subArr1;
+        srcIndex = subArr1Idx;
+      }
+    } else if (subArr1Idx > -1) {
+      // Right sublist if exhausted
+      srcArr = subArr1;
+      srcIndex = subArr1Idx;
+    } else if (subArr2Idx > -1) {
+      // Left sublist is exhausted
+      srcArr = subArr2;
+      srcIndex = subArr2Idx;
+    } else {
+      return;
+    }
 
+    // Select the element to move
+    clickHandler(srcArr, srcIndex);
+
+    // Select the destination where the element should be moved
+    var destArr = arrays["array_" + destDepth + "_" + destColumn];
+    clickHandler(destArr, destIndex);
+  }
+
+  // Click handler for all array elements
+  function clickHandler(arr, index) {
+    if (mergeValueIndex === -1) {
+      // No element is currently selected,
+      // select the current element
+      // Don't let the user select an empty element
+      if (arr.value(index) === "") {
         return;
       }
-  
-      // Select the element to move
-      clickHandler(srcArr, srcIndex);
-  
-      // Select the destination where the element should be moved
-      var destArr = arrays["array_" + destDepth + "_" + destColumn];
-      clickHandler(destArr, destIndex);
-    }
-  
-    // Click handler for all array elements
-    function clickHandler(arr, index) {
-      if (mergeValueIndex === -1) { // No element is currently selected,
-                                    // select the current element
-        // Don't let the user select an empty element
-        if (arr.value(index) === "") { return; }
-        arr.highlight(index);
-        mergeValueArr = arr;
-        mergeValueIndex = index;
+      arr.highlight(index);
+      mergeValueArr = arr;
+      mergeValueIndex = index;
+      return;
+    } else if (arr === mergeValueArr && index === mergeValueIndex) {
+      // Deselect the currently selected element
+      resetMergeVars();
+    } else if (arr !== mergeValueArr) {
+      // Decide how to handle selected element
+      // Don't let the user overwrite a merged element
+      if (arr.value(index) !== "") {
         return;
-      } else if (arr === mergeValueArr && index === mergeValueIndex) {
-        // Deselect the currently selected element
+      }
+      var arrLevel = getLevel(arr);
+      var mvaLevel = getLevel(mergeValueArr);
+
+      // Ensure the user only merges one level up, not down or too far up
+      if (
+        arrLevel === mvaLevel - 1 &&
+        mergeValueArr !== null &&
+        mergeValueIndex > -1
+      ) {
+        // Complete merge by setting the value of the current element
+        // to the stored value
+        arr.value(index, mergeValueArr.value(mergeValueIndex));
+
+        // Clear values the user has already merged
+        mergeValueArr.value(mergeValueIndex, "");
+
+        // Hide arrays once the user empties them
+        if (mergeValueArr.isEmpty()) {
+          mergeValueArr.hide();
+        }
+
+        // Update the value in the userAnswerValue array and the depth
+        // in the userAnswerDepth array
+        var usrAnsIndex = findUsrAnswerIndex(arr, index);
+        userAnswerValue.value(usrAnsIndex, arr.value(index));
+        userAnswerDepth.value(usrAnsIndex, arrLevel);
+
+        // Reset the merge variables so we have a clean state for an undo
         resetMergeVars();
-      } else if (arr !== mergeValueArr) { // Decide how to handle selected element
-        // Don't let the user overwrite a merged element
-        if (arr.value(index) !== "") { return; }
-        var arrLevel = getLevel(arr);
-        var mvaLevel = getLevel(mergeValueArr);
-  
-        // Ensure the user only merges one level up, not down or too far up
-        if (arrLevel === mvaLevel - 1 && mergeValueArr !== null &&
-                                         mergeValueIndex > -1) {
-          // Complete merge by setting the value of the current element
-          // to the stored value
-          arr.value(index, mergeValueArr.value(mergeValueIndex));
-  
-          // Clear values the user has already merged
-          mergeValueArr.value(mergeValueIndex, "");
-  
-          // Hide arrays once the user empties them
-          if (mergeValueArr.isEmpty()) {
-            mergeValueArr.hide();
+
+        // Mark this as a step to be graded and a step that can be undone
+        // (continuous feedback)
+        exercise.gradeableStep();
+        // Always check if user array is sorted and show success message
+
+        // Make isUserSorted globally available for clickHandler
+        window.isUserSorted = function isUserSorted() {
+          if (
+            !window.userAnswerValue ||
+            typeof window.userAnswerValue.size !== "function"
+          ) {
+            console.log(
+              "[isUserSorted] window.userAnswerValue missing or invalid"
+            );
+            return false;
           }
-  
-          // Update the value in the userAnswerValue array and the depth
-          // in the userAnswerDepth array
-          var usrAnsIndex = findUsrAnswerIndex(arr, index);
-          userAnswerValue.value(usrAnsIndex, arr.value(index));
-          userAnswerDepth.value(usrAnsIndex, arrLevel);
-  
-          // Reset the merge variables so we have a clean state for an undo
-          resetMergeVars();
-  
-          // Mark this as a step to be graded and a step that can be undone
-          // (continuous feedback)
-          exercise.gradeableStep();
-        } else {
-          // Deselect the current element, if the user is trying to merge down
-          // rather than up
-          resetMergeVars();
-        }
+          var n = window.userAnswerValue.size();
+          for (var i = 0; i < n; i++) {
+            var v = window.userAnswerValue.value(i);
+            if (v === "" || v === undefined || v === null) {
+              console.log("[isUserSorted] Not filled at", i);
+              return false;
+            }
+            if (
+              i > 0 &&
+              window.userAnswerValue.value(i) <
+                window.userAnswerValue.value(i - 1)
+            ) {
+              console.log("[isUserSorted] Not sorted at", i);
+              return false;
+            }
+          }
+          return true;
+        };
+        // Expose userAnswerValue and arrays globally for isUserSorted
+        window.userAnswerValue = userAnswerValue;
+        window.arrays = arrays;
+      } else {
+        // Deselect the current element, if the user is trying to merge down
+        // rather than up
+        resetMergeVars();
       }
     }
-  
-    // Convenience function to reset the merge variables
-    function resetMergeVars() {
-      if (mergeValueArr !== null) {
-        // Deselect an element after it is merged or if it is clicked again
-        mergeValueArr.unhighlight(mergeValueIndex);
-      }
-  
-      // Reset so the next element can be merged
-      mergeValueArr = null;
-      mergeValueIndex = -1;
+  }
+
+  // Convenience function to reset the merge variables
+  function resetMergeVars() {
+    if (mergeValueArr !== null) {
+      // Deselect an element after it is merged or if it is clicked again
+      mergeValueArr.unhighlight(mergeValueIndex);
     }
-  
-    //***************************************************************************
-    //*************               Convenience Functions               ***********
-    //***************************************************************************
-  
-    // Given an array and an index in that array, calculates the
-    // corresponding position in the userAnswerValue array
-    // - The index (starting at 0) within a given row (level) of the
-    //   currently selected element
-    // - Used to update the userAnswerValue array each time an element is moved
-    function findUsrAnswerIndex(arr, idx) {
-      return parseArrData(arr)[2] + idx;
+
+    // Reset so the next element can be merged
+    mergeValueArr = null;
+    mergeValueIndex = -1;
+  }
+
+  //***************************************************************************
+  //*************               Convenience Functions               ***********
+  //***************************************************************************
+
+  // Given an array and an index in that array, calculates the
+  // corresponding position in the userAnswerValue array
+  // - The index (starting at 0) within a given row (level) of the
+  //   currently selected element
+  // - Used to update the userAnswerValue array each time an element is moved
+  function findUsrAnswerIndex(arr, idx) {
+    return parseArrData(arr)[2] + idx;
+  }
+
+  // Return the recursion level of the given array
+  // Used to ensure a user only merges an element into an array
+  // directly above the current one, can't merge down or too far up
+  function getLevel(arr) {
+    return parseArrData(arr)[0];
+  }
+
+  // Parse the level, column and left offset from the specified array's attributes
+  // - Expects array IDs matching the following pattern: "array_\d+_\d+"
+  //   where the first number is the level and the second number is the column
+  //   [see setPosition()]
+  // - Expects array to have a "data-offset" attribute which is the offset
+  //   between indices in given array and indices in userAnswerValue array
+  function parseArrData(arr) {
+    var id = arr.element.attr("id");
+    var args = id.split("_");
+    var level = parseInt(args[1], 10);
+    var column = parseInt(args[2], 10);
+    var arrOffset = 0;
+    if (typeof arr.element.attr("data-offset") !== "undefined") {
+      arrOffset = parseInt(arr.element.attr("data-offset"), 10);
     }
-  
-    // Return the recursion level of the given array
-    // Used to ensure a user only merges an element into an array
-    // directly above the current one, can't merge down or too far up
-    function getLevel(arr) {
-      return parseArrData(arr)[0];
-    }
-  
-    // Parse the level, column and left offset from the specified array's attributes
-    // - Expects array IDs matching the following pattern: "array_\d+_\d+"
-    //   where the first number is the level and the second number is the column
-    //   [see setPosition()]
-    // - Expects array to have a "data-offset" attribute which is the offset
-    //   between indices in given array and indices in userAnswerValue array
-    function parseArrData(arr) {
-      var id = arr.element.attr("id");
-      var args = id.split("_");
-      var level = parseInt(args[1], 10);
-      var column = parseInt(args[2], 10);
-      var arrOffset = 0;
-      if (typeof arr.element.attr("data-offset") !== "undefined") {
-        arrOffset = parseInt(arr.element.attr("data-offset"), 10);
-      }
-      return [level, column, arrOffset];
-    }
-  
-    // Using continuous mode slows the exercise down considerably
-    // (probably because it has to check that all the arrays are correct)
-    exercise =
-      av.exercise(
-        modelSolution,
-        initialize,
-        {
-          compare: [{class: "jsavhighlight"}, {}],
-          controls: $(".jsavexercisecontrols"),
-          fix: fixState,
-          modelDialog: {width: 780}
-        }
-      );
-    exercise.reset();
+    return [level, column, arrOffset];
+  }
+
+  // Using continuous mode slows the exercise down considerably
+  // (probably because it has to check that all the arrays are correct)
+  exercise = av.exercise(modelSolution, initialize, {
+    compare: [{ class: "jsavhighlight" }, {}],
+    controls: $(".jsavexercisecontrols"),
+    fix: fixState,
+    modelDialog: { width: 780 },
   });
+  exercise.reset();
+});
