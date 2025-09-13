@@ -1,21 +1,64 @@
-#parent {
-    text-align: center;
-    width: 100%;
+.collapsible {
+  background-color: #f1f1f1;
+  color: #333;
+  cursor: pointer;
+  padding: 8px 16px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 1.1em;
+  margin-bottom: 4px;
 }
-#container
-    {
-        display: inline-block;
-        width:785px;
-        height:610px
-    }
-.jsavcanvas
-    {overflow:hidden}
-.jsavarray
-    {position:absolute}
-.jsavcontainer
-    {overflow:visible}
-.jsavhighlight
-    {font-size:110%}
+.collapsible.active,
+.collapsible:hover {
+  background-color: #e2e2e2;
+}
 .content {
-    text-align: left;
+  display: none;
+  padding: 0 18px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+#answerBox {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #aaa;
+  margin: 10px auto;
+  width: 90%;
+  background: #fafafa;
+  padding: 10px;
+  text-align: left;
+}
+#successBox {
+  color: green;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 10px auto;
+  display: none;
+}
+#parent {
+  text-align: center;
+  width: 100%;
+}
+#container {
+  display: inline-block;
+  width: 785px;
+  height: 610px;
+}
+.jsavcanvas {
+  overflow: hidden;
+}
+.jsavarray {
+  position: absolute;
+}
+.jsavcontainer {
+  overflow: visible;
+}
+.jsavhighlight {
+  font-size: 110%;
+}
+.content {
+  text-align: left;
 }
