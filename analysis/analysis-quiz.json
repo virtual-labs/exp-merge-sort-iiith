@@ -1,0 +1,62 @@
+{
+    "version": 2.0,
+    "questions": [
+        {
+            "question": "1. What is the complexity of merging two subarrays in the merge sort algorithm? Assume the sizes to be M and N.",
+            "answers": {
+                "a": "O(M + N)",
+                "b": "O(M * N)",
+                "c": "O(M * N^2)",
+                "d": "O((M * N) ^ 2)"
+            },
+            "correctAnswer": "a",
+            "explanations": {
+                "a": "Combining the two arrays only requires the pairwise comparison of the top elements (lowest indexed elements not added to the combined array yet) of each array and not that of all the elements. Hence only a total of M + N comparisons are required."
+            },
+            "difficulty": "advanced"
+        },
+        {
+            "question": "2. Which of the following algorithms perform better than merge sort in the worst case time complexity?",
+            "answers": {
+                "a": "Heap Sort",
+                "b": "Quick Sort",
+                "c": "Both a and b",
+                "d": "None of the above"
+            },
+            "correctAnswer": "d",
+            "explanations": {
+                "d": "Merge sort and heap sort have a worst case complexity of O(n log(n)) while quicksort has that of O(n^2). Clearly neither heap sort or quicksort perform better than merge sort."
+            },
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "3. How does the time complexity of splitting/dividing an array vary with size of the array?",
+            "answers": {
+                "a": "No change, i.e, the complexity does not depend on the array size",
+                "b": "Directly proportional, i.e, complexity increases as array size increases",
+                "c": "Inversely proportional, i.e, complexity decreases as array size increases",
+                "d": "None of the above"
+            },
+            "correctAnswer": "a",
+            "explanations": {
+                "a": "The complexity of splitting/dividing an array is constant, O(1),  as this step simply involves finding the midpoint (middle index) of the array."
+            },
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "4. What will be the maximum possible array size at the ith level of the merge sort tree for an array of size N (assume level indexing starts from 0, i.e, the original array at the root is said to be at the 0th level)? Fractional results will be rounded up to the nearest integer.",
+            "answers": {
+                "a": "2^i * N",
+                "b": "i * N",
+                "c": "N / i",
+                "d": "N / 2^i"
+            },
+            "correctAnswer": "d",
+            "explanations": {
+                "d": "This is because at each level we split each of the subarrays into two equal halves. So at level 1, we will get 2 arrays of size N / 2. At level 2, we will get 4 arrays of size (N / 2) / 2 = N / 4 and so on. We can clearly see that the array size decreases exponentially as a negative power of 2."
+            },
+            "difficulty": "advanced"
+        }
+    ]
+}
+    
