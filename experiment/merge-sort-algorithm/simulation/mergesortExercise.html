@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/mergesortExercise.css" type="text/css" />
   </head>
 
-  <body onload="handlers();">
+  <body onload="">
     <div id="parent">
       <div class="instruction-box">
         <button class="collapsible" id="instructionsToggle">
@@ -30,27 +30,48 @@
         <div class="content" id="instructionsContent" style="display: none">
           <ul>
             <li>
-              This activity will help you practice and understand the merge sort
-              algorithm step by step.
+              <strong>Goal:</strong> Practice the merge sort algorithm by
+              manually merging smaller sorted arrays into larger ones.
             </li>
             <li>
-              Start at the bottom and merge two single-element arrays to form a
-              sorted array. Continue merging until all elements are merged into
-              a single sorted array.
+              <strong>How merge sort works:</strong> Start with single elements
+              at the bottom, merge pairs into sorted arrays of 2, then merge
+              those into arrays of 4, and so on until you have one completely
+              sorted array.
             </li>
             <li>
-              To merge:
-              <b
-                >Click a value to select it, then click the position in the
-                merged array where it should go.</b
-              >
+              <strong>To merge two arrays:</strong>
+              <ol>
+                <li>
+                  Click on the smaller value from either left or right subarray
+                </li>
+                <li>
+                  Click on the next empty position in the merged array above
+                </li>
+                <li>Repeat until both subarrays are empty</li>
+              </ol>
             </li>
-            <li>If you make a mistake, you will be prompted to try again.</li>
-            <li>Click <b>Reset</b> to try again with a new random array.</li>
             <li>
-              Click <b>Get Answer</b> to see the correct sequence of clicks for
-              this array.
+              <strong>Rules:</strong>
+              <ul>
+                <li>
+                  Always choose the smallest available value from the front of
+                  either subarray
+                </li>
+                <li>
+                  You can only merge into the array directly above (one level
+                  up)
+                </li>
+                <li>If you make a mistake, you'll be prompted to try again</li>
+              </ul>
             </li>
+            <li><strong>Controls:</strong></li>
+            <ul>
+              <li>Click <b>Reset</b> to start over with a new random array</li>
+              <li>
+                Click <b>Get Answer</b> to see the correct sequence of moves
+              </li>
+            </ul>
           </ul>
         </div>
       </div>
@@ -105,12 +126,5 @@
     <script src="static/lib/ODSA/odsaUtils-min.js"></script>
     <script src="static/lib/ODSA/odsaAV-min.js"></script>
     <script src="js/mergesortExercise.js"></script>
-    <script>
-      function handlers() {
-        $("#resetArt").click(function () {
-          $("[name='reset']").click();
-        });
-      }
-    </script>
   </body>
 </html>
