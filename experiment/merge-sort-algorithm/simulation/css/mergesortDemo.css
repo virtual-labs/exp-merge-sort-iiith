@@ -6,30 +6,149 @@
   overflow-x: hidden;
 }
 
-.avcontainer{
+.avcontainer {
   overflow: visible;
+  position: relative;
+  min-height: 400px;
 }
 
 .jsavarray {
   position: absolute;
 }
 
-#allInput{
+#allInput {
   position: relative;
-  text-align: center ;
-  padding:2vh;
+  text-align: center;
+  padding: 2vh;
 }
 
 .comment-box {
   margin-top: 1%;
   min-height: 11vh;
-  width:auto;
+  width: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
 }
 
 select {
   padding: 7px 20px;
-  margin-right: 30px ;
+  margin-right: 30px;
   box-sizing: border-box;
-  width: 12%; 
+  width: 12%;
   margin-bottom: 10px;
+}
+
+.button-input:disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+/* Simple mobile responsive adjustments */
+@media screen and (max-width: 768px) {
+  #container {
+    padding: 10px;
+  }
+
+  #allInput {
+    padding: 10px;
+  }
+
+  .button-input {
+    display: block;
+    width: 90%;
+    max-width: 250px;
+    margin: 8px auto;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+  }
+
+  .comment-box {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+    min-height: 80px;
+  }
+
+  .avcontainer {
+    overflow-x: auto;
+    overflow-y: visible;
+    margin-top: 15px;
+    min-height: 300px;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: white;
+    position: relative;
+  }
+
+  /* Scale down the JSAV arrays specifically for mobile */
+  .avcontainer .jsavarray {
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+
+  select {
+    width: 80%;
+    max-width: 200px;
+    margin: 10px auto;
+    display: block;
+  }
+
+  .instruction-box .content {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  #allInput {
+    padding: 5px;
+  }
+
+  .button-input {
+    margin: 5px auto;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .comment-box {
+    padding: 8px;
+    margin: 8px 0;
+    min-height: 60px;
+    font-size: 12px;
+  }
+
+  .avcontainer {
+    min-height: 200px;
+    margin-top: 8px;
+  }
+
+  .avcontainer .jsavarray {
+    transform: scale(0.7);
+    transform-origin: top left;
+  }
+
+  .instruction-box {
+    margin-bottom: 8px;
+  }
+}
+
+/* Desktop - ensure no scaling issues */
+@media screen and (min-width: 769px) {
+  .avcontainer {
+    min-height: 400px;
+  }
+
+  .avcontainer .jsavarray {
+    transform: none;
+  }
 }

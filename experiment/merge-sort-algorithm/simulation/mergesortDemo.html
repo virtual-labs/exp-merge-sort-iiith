@@ -87,12 +87,15 @@
     <script src="../../assets/js/instruction-box.js"></script>
     <script>
       function handlers() {
+        $("#autoplay").prop("disabled", true).css("opacity", "0.5");
+
         $("#setup").click(function () {
           displayComment("");
           commentsQueue = [];
           $("#arraysize").val(6);
           $("#arrayValues").val("10,5,12,17,2,22");
           $("#run").click();
+          $("#autoplay").prop("disabled", false).css("opacity", "1");
         });
         /*$("#next").click(function () {
           $(".jsavforward").click();
@@ -108,10 +111,17 @@
           $("#reset").click();
           displayComment("");
           commentsQueue = [];
+
+          // Disable Auto Play button after reset
+          $("#autoplay").prop("disabled", true).css("opacity", "0.5");
         });
 
         let autoPlayInterval = null;
         $("#autoplay").click(function () {
+          // Only proceed if button is enabled
+          if ($(this).prop("disabled")) {
+            return;
+          }
           if (autoPlayInterval) {
             clearInterval(autoPlayInterval);
             autoPlayInterval = null;
@@ -132,8 +142,8 @@
             }, 1500); // Slightly slower for better visibility
           }
         });
-
-        $("#setup").click();
+        // Make sure NOT to automatically trigger the setup
+        // $('#setup').click()
       }
     </script>
   </body>
