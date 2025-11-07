@@ -21,77 +21,31 @@ $(document).ready(function () {
   $("#resetBtn, #resetArt").on("click", function () {
     $("#answerBox").hide();
     $("#successBox").hide();
+    // Reset any global variables
+    window.initialArray = null;
+    // Reset the exercise
+    exercise.reset();
   });
 
   function getModelAnswer() {
-    // Show the sequence of clicks (merge steps) for merge sort
     if (!window.initialArray || !Array.isArray(window.initialArray)) {
-      return "Model answer unavailable.";
+      return "<div><b>Model answer unavailable.</b><br>Please reset and try again.</div>";
     }
+
     var arr = window.initialArray.slice();
-    var steps = [];
+    var sortedArr = arr.slice().sort(function (a, b) {
+      return a - b;
+    });
 
-    // Helper to record the merge steps
-    function mergeSortWithSteps(subArr, leftIdx) {
-      if (subArr.length <= 1)
-        return subArr.map((v, i) => ({ val: v, idx: leftIdx + i }));
-      var mid = Math.floor(subArr.length / 2);
-      var left = mergeSortWithSteps(subArr.slice(0, mid), leftIdx);
-      var right = mergeSortWithSteps(subArr.slice(mid), leftIdx + mid);
-      var merged = [];
-      var i = 0,
-        j = 0,
-        k = 0;
-      var mergeStart = leftIdx;
-      while (i < left.length && j < right.length) {
-        if (left[i].val < right[j].val) {
-          steps.push(
-            `Click value ${left[i].val} (index ${left[i].idx + 1}) → position ${
-              mergeStart + k + 1
-            }`
-          );
-          merged.push({ val: left[i].val, idx: mergeStart + k });
-          i++;
-        } else {
-          steps.push(
-            `Click value ${right[j].val} (index ${
-              right[j].idx + 1
-            }) → position ${mergeStart + k + 1}`
-          );
-          merged.push({ val: right[j].val, idx: mergeStart + k });
-          j++;
-        }
-        k++;
-      }
-      while (i < left.length) {
-        steps.push(
-          `Click value ${left[i].val} (index ${left[i].idx + 1}) → position ${
-            mergeStart + k + 1
-          }`
-        );
-        merged.push({ val: left[i].val, idx: mergeStart + k });
-        i++;
-        k++;
-      }
-      while (j < right.length) {
-        steps.push(
-          `Click value ${right[j].val} (index ${right[j].idx + 1}) → position ${
-            mergeStart + k + 1
-          }`
-        );
-        merged.push({ val: right[j].val, idx: mergeStart + k });
-        j++;
-        k++;
-      }
-      return merged;
-    }
-
-    mergeSortWithSteps(arr, 0);
-    return (
-      `<div style='max-height:140px;overflow-y:auto;'><b>Sequence of clicks to solve:</b><br><ol style='padding-left:20px;'>` +
-      steps.map((s) => `<li>${s}</li>`).join("") +
-      `</ol></div>`
-    );
+    return `<div style='max-height:140px;overflow-y:auto;'>
+    <b>Original array:</b> [${arr.join(", ")}]<br><br>
+    <b>Final sorted array:</b> [${sortedArr.join(", ")}]<br><br>
+    <b>How to solve:</b><br>
+    1. Start from the bottom level (single elements)<br>
+    2. Click smaller values first when merging two arrays<br>
+    3. Work your way up level by level<br>
+    4. Always merge into the array directly above<br>
+    </div>`;
   }
 
   var canvasWidth = $("#container").width(); // The width of the display
@@ -485,6 +439,50 @@ $(document).ready(function () {
     clickHandler(destArr, destIndex);
   }
 
+  function checkCompletion() {
+    // Check if the top-level array (level 1) is completely filled
+    var topArray = arrays["array_1_1"];
+    if (!topArray) return false;
+
+    var isComplete = true;
+    for (var i = 0; i < topArray.size(); i++) {
+      var value = topArray.value(i);
+      if (value === "" || value === undefined || value === null) {
+        isComplete = false;
+        break;
+      }
+    }
+
+    if (isComplete) {
+      // Check if it's sorted correctly
+      var isSorted = true;
+      for (var i = 1; i < topArray.size(); i++) {
+        var current = parseFloat(topArray.value(i));
+        var previous = parseFloat(topArray.value(i - 1));
+        if (current < previous) {
+          isSorted = false;
+          break;
+        }
+      }
+      if (isSorted) {
+        $("#successBox").show();
+        // Add visual celebration that works with JSAV
+        try {
+          topArray.highlight();
+          setTimeout(function () {
+            if (topArray && typeof topArray.unhighlight === "function") {
+              topArray.unhighlight();
+            }
+          }, 2000);
+        } catch (e) {
+          console.log("Highlight error:", e);
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
   // Click handler for all array elements
   function clickHandler(arr, index) {
     if (mergeValueIndex === -1) {
@@ -540,40 +538,9 @@ $(document).ready(function () {
         // Mark this as a step to be graded and a step that can be undone
         // (continuous feedback)
         exercise.gradeableStep();
-        // Always check if user array is sorted and show success message
 
-        // Make isUserSorted globally available for clickHandler
-        window.isUserSorted = function isUserSorted() {
-          if (
-            !window.userAnswerValue ||
-            typeof window.userAnswerValue.size !== "function"
-          ) {
-            console.log(
-              "[isUserSorted] window.userAnswerValue missing or invalid"
-            );
-            return false;
-          }
-          var n = window.userAnswerValue.size();
-          for (var i = 0; i < n; i++) {
-            var v = window.userAnswerValue.value(i);
-            if (v === "" || v === undefined || v === null) {
-              console.log("[isUserSorted] Not filled at", i);
-              return false;
-            }
-            if (
-              i > 0 &&
-              window.userAnswerValue.value(i) <
-                window.userAnswerValue.value(i - 1)
-            ) {
-              console.log("[isUserSorted] Not sorted at", i);
-              return false;
-            }
-          }
-          return true;
-        };
-        // Expose userAnswerValue and arrays globally for isUserSorted
-        window.userAnswerValue = userAnswerValue;
-        window.arrays = arrays;
+        // Check if exercise is completed
+        checkCompletion();
       } else {
         // Deselect the current element, if the user is trying to merge down
         // rather than up
