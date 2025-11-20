@@ -32,12 +32,12 @@
         <div class="content">
           <ul>
             <li>
-              Click <b>Setup</b> to draw the canvas and start the experiment.
+              Click <b>Setup</b> to draw the canvas and initialize the demo.
             </li>
-            <li>Click <b>Next</b> to go ahead with the visualization.</li>
             <li>
-              Click on <b>Reset</b> to reset the experiment and start again.
+              Click <b>Auto Play</b> to start the automatic visualization.
             </li>
+            <li>Click on <b>Reset</b> to reset the demo and start again.</li>
           </ul>
         </div>
       </div>
@@ -59,7 +59,9 @@
         <button type="button" class="button-input" id="setup">Setup</button>
         <button type="button" class="button-input" id="resetArt">Reset</button>
         <!-- <button type="button" class="button-input" id="next">Next</button> -->
-        <button type="button" class="button-input" id="autoplay">Auto Play</button>
+        <button type="button" class="button-input" id="autoplay">
+          Auto Play
+        </button>
       </div>
 
       <div class="comment-box">
@@ -85,45 +87,63 @@
     <script src="../../assets/js/instruction-box.js"></script>
     <script>
       function handlers() {
-        $('#setup').click(function () {
-          displayComment('')
-          commentsQueue = []
-          $('#arraysize').val(6)
-          $('#arrayValues').val('10,5,12,17,2,22')
-          $('#run').click()
-        })
-        $('#next').click(function () {
-          $('.jsavforward').click()
-          displayComment(commentsQueue.shift())
-        })
-        $('#resetArt').click(function () {
-          $('#reset').click()
-          displayComment('')
-          commentsQueue = []
-        })
-        let autoPlayInterval = null
+        $("#autoplay").prop("disabled", true).css("opacity", "0.5");
 
-        $('#autoplay').click(function () {
+        $("#setup").click(function () {
+          displayComment("");
+          commentsQueue = [];
+          $("#arraysize").val(6);
+          $("#arrayValues").val("10,5,12,17,2,22");
+          $("#run").click();
+          $("#autoplay").prop("disabled", false).css("opacity", "1");
+        });
+        /*$("#next").click(function () {
+          $(".jsavforward").click();
+          displayComment(commentsQueue.shift());
+        });*/
+        $("#resetArt").click(function () {
+          // Stop auto play if it's running
           if (autoPlayInterval) {
-            clearInterval(autoPlayInterval)
-            autoPlayInterval = null
-            $('#autoplay').text('Auto Play')
-          } else {
-            $('#autoplay').text('Stop Auto Play')
-            autoPlayInterval = setInterval(() => {
-              if (autoPlayInterval) {
-                $('.jsavforward').click()
-                displayComment(commentsQueue.shift())
-              } else {
-                clearInterval(autoPlayInterval)
-                autoPlayInterval = null
-                $('#autoplay').text('Auto Play')
-              }
-            }, 1300) // Adjust interval duration (in milliseconds) as needed
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            $("#autoplay").text("Auto Play");
           }
-        })
+          $("#reset").click();
+          displayComment("");
+          commentsQueue = [];
 
-        $('#setup').click()
+          // Disable Auto Play button after reset
+          $("#autoplay").prop("disabled", true).css("opacity", "0.5");
+        });
+
+        let autoPlayInterval = null;
+        $("#autoplay").click(function () {
+          // Only proceed if button is enabled
+          if ($(this).prop("disabled")) {
+            return;
+          }
+          if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            $("#autoplay").text("Auto Play");
+          } else {
+            $("#autoplay").text("Stop Auto Play");
+            autoPlayInterval = setInterval(() => {
+              if (commentsQueue.length > 0) {
+                $(".jsavforward").click();
+                displayComment(commentsQueue.shift());
+              } else {
+                // Demo completed, stop auto play
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                $("#autoplay").text("Auto Play");
+                displayComment(comments["av_c2"]); // Show "Done sorting!" message
+              }
+            }, 1500); // Slightly slower for better visibility
+          }
+        });
+        // Make sure NOT to automatically trigger the setup
+        // $('#setup').click()
       }
     </script>
   </body>
