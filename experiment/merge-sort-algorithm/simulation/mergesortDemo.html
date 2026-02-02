@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Mergesort Visualization Demo</title>
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/mergesortDemo.css" type="text/css" />
   </head>
 
-  <body onload="handlers();">
+  <body onload="handlers()">
     <div id="container">
       <div class="instruction-box">
         <button class="collapsible">Instructions</button>
@@ -35,7 +35,8 @@
               Click <b>Setup</b> to draw the canvas and initialize the demo.
             </li>
             <li>
-              Click <b>Auto Play</b> to start the automatic visualization.
+              Click <b>Auto Play</b> to watch the demo automatically. You can
+              pause the demo at any time, and resume it whenever you want.
             </li>
             <li>Click on <b>Reset</b> to reset the demo and start again.</li>
           </ul>
@@ -117,29 +118,65 @@
         });
 
         let autoPlayInterval = null;
+        let isPaused = false;
+        $("#autoplay").text("Auto Play");
         $("#autoplay").click(function () {
-          // Only proceed if button is enabled
           if ($(this).prop("disabled")) {
             return;
           }
-          if (autoPlayInterval) {
+          if (autoPlayInterval && !isPaused) {
+            // Pause the demo
             clearInterval(autoPlayInterval);
             autoPlayInterval = null;
-            $("#autoplay").text("Auto Play");
-          } else {
-            $("#autoplay").text("Stop Auto Play");
+            isPaused = true;
+            $("#autoplay").text("Resume Demo");
+          } else if (isPaused) {
+            // Resume the demo
+            isPaused = false;
+            $("#autoplay").text("Pause Demo");
             autoPlayInterval = setInterval(() => {
               if (commentsQueue.length > 0) {
                 $(".jsavforward").click();
                 displayComment(commentsQueue.shift());
               } else {
-                // Demo completed, stop auto play
                 clearInterval(autoPlayInterval);
                 autoPlayInterval = null;
+                isPaused = false;
                 $("#autoplay").text("Auto Play");
-                displayComment(comments["av_c2"]); // Show "Done sorting!" message
+                displayComment(comments["av_c2"]);
+                // Advance JSAV visualization to the end
+                if ($(".jsavend").length) {
+                  $(".jsavend").click();
+                } else {
+                  // If no .jsavend button, keep clicking .jsavforward until disabled
+                  let forwardBtn = $(".jsavforward");
+                  let maxSteps = 1000; // safety limit
+                  while (
+                    forwardBtn.length &&
+                    !forwardBtn.prop("disabled") &&
+                    maxSteps-- > 0
+                  ) {
+                    forwardBtn.click();
+                  }
+                }
               }
-            }, 1500); // Slightly slower for better visibility
+            }, 1500);
+          } else {
+            // Start auto play
+            isPaused = false;
+            $("#autoplay").text("Pause Demo");
+            autoPlayInterval = setInterval(() => {
+              if (commentsQueue.length > 0) {
+                $(".jsavforward").click();
+                displayComment(commentsQueue.shift());
+              } else {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                isPaused = false;
+                $("#autoplay").text("Auto Play");
+                displayComment(comments["av_c2"]);
+              }
+            }, 1500);
           }
         });
         // Make sure NOT to automatically trigger the setup
