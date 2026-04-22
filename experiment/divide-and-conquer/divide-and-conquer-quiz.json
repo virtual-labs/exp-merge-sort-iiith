@@ -1,33 +1,39 @@
 {
-    "version": 2.0,
-    "questions": [
-        {
-            "question": "1. Which of the following sequences of steps best describes the divide and conquer strategy?",
-            "answers": {
-                "a": "Conquer → Divide → Combine",
-                "b": "Divide → Conquer → Combine",
-                "c": "Divide → Combine → Conquer",
-                "d": "Combine → Conquer → Divide"
-            },
-            "correctAnswer": "b",
-            "explanations": {
-                "b": "This strategy involves dividing the problem into independent subproblems followed by solving or ‘conquering’ each of those subproblems separately and finally combining the solutions into a final solution to the overall problem."
-            },
-            "difficulty": "na"
-        },
-        {
-            "question": "2. The subproblems in divide and conquer are solved _______.",
-            "answers": {
-                "a": "Dependently",
-                "b": "Concurrently",
-                "c": "Independently",
-                "d": "Parallely"
-            },
-            "correctAnswer": "c",
-            "explanations": {
-                "c": "The main advantage that this strategy provides is in the fact that the subproblems formulated during division can be solved independently from each other thus making the problem easier to tackle."
-            },
-            "difficulty": "na"
-        }
-    ]
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. Which of the following best describes the steps in the divide and conquer strategy?",
+      "answers": {
+        "a": "Conquer → Divide → Combine",
+        "b": "Divide → Conquer → Combine",
+        "c": "Divide → Combine → Conquer",
+        "d": "Combine → Conquer → Divide"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. The correct order is to divide first, not conquer.",
+        "b": "Correct. First, divide the problem into smaller parts, then solve (conquer) each part, and finally combine the solutions.",
+        "c": "Incorrect. Combining comes after conquering (solving) the subproblems, not before.",
+        "d": "Incorrect. The correct order is to divide first, not combine."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "2. In divide and conquer, how are the subproblems solved?",
+      "answers": {
+        "a": "Dependently",
+        "b": "Concurrently",
+        "c": "Independently",
+        "d": "In parallel"
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. Subproblems are solved independently, not depending on each other's results.",
+        "b": "Incorrect. While subproblems can sometimes be solved at the same time, the key point is that they are independent, not necessarily concurrent.",
+        "c": "Correct. Each subproblem can be solved on its own, without needing results from the others.",
+        "d": "Incorrect. 'In parallel' means at the exact same time, but the main idea is independence, not parallelism."
+      },
+      "difficulty": "beginner"
+    }
+  ]
 }
