@@ -11,10 +11,10 @@
       },
       "correctAnswer": "b",
       "explanations": {
-        "a": "Incorrect. The number of rounds is the number of times we split all current subarrays, and the number of splits is the total number of times we divide any array. This answer mixes up the values.",
-        "b": "Correct. For 7 elements, merge sort needs 3 rounds of splitting (since 2^3 = 8 > 7), and a total of 6 split operations to break the array down to single elements.",
-        "c": "Incorrect. This answer reverses the meaning of rounds and splits.",
-        "d": "Incorrect. This answer reverses the meaning of rounds and splits."
+        "a": "Incorrect. Seven elements require another splitting level before all subarrays contain one element.",
+        "b": "Correct. The seven elements are divided over three rounds until the subarrays contain single elements, requiring six total split operations.",
+        "c": "Incorrect. The number of rounds and the number of individual split operations are different quantities.",
+        "d": "Incorrect. The number of individual split operations is not the same as the number of splitting rounds."
       },
       "difficulty": "intermediate"
     },
@@ -28,10 +28,10 @@
       },
       "correctAnswer": "c",
       "explanations": {
-        "a": "Incorrect. Splitting just breaks the array into smaller pieces; no sorting happens here.",
-        "b": "Incorrect. There is no separate sorting step in merge sort.",
-        "c": "Correct. Sorting happens when merging the subarrays back together.",
-        "d": "Incorrect. Option c is correct."
+        "a": "Incorrect. Splitting is used to create smaller subarrays; it does not itself arrange their elements into sorted order.",
+        "b": "Incorrect. Merge sort does not have a separate sorting phase between division and merging.",
+        "c": "Correct. The sorted order is produced as the smaller sorted subarrays are merged back together.",
+        "d": "Incorrect. Merge sort performs the sorting through its merging process."
       },
       "difficulty": "intermediate"
     },
@@ -45,12 +45,114 @@
       },
       "correctAnswer": "b",
       "explanations": {
-        "a": "Incorrect. We cannot just join the subarrays; we must compare values to keep the result sorted.",
-        "b": "Correct. We always compare the smallest remaining elements and add the smaller one to the merged array.",
-        "c": "Incorrect. Alternating elements does not guarantee a sorted result.",
-        "d": "Incorrect. Option b is correct."
+        "a": "Incorrect. Simply joining the subarrays would preserve their existing grouping but would not necessarily produce a sorted sequence.",
+        "b": "Correct. Since both subarrays are already sorted, repeatedly comparing their first remaining elements and selecting the smaller one produces the merged sorted result.",
+        "c": "Incorrect. Alternating between the subarrays without considering their values can place elements in the wrong order.",
+        "d": "Incorrect. Merge sort does have a defined merge operation in which elements from the sorted subarrays are compared and combined."
       },
       "difficulty": "intermediate"
+    },
+    {
+      "question": "4. What is the first major operation performed by merge sort on an unsorted array?",
+      "answers": {
+        "a": "Divide the array into smaller subarrays",
+        "b": "Find the largest element",
+        "c": "Reverse the array",
+        "d": "Remove duplicate elements"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Merge sort begins by recursively dividing the array into smaller subarrays.",
+        "b": "Incorrect. Finding the largest element is not the first operation of merge sort.",
+        "c": "Incorrect. Reversing the array is not part of the merge sort division process.",
+        "d": "Incorrect. Merge sort does not remove duplicate elements as part of its sorting process."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "5. If the two sorted subarrays [1, 4, 7] and [2, 3, 8] are merged in ascending order, what is the resulting array?",
+      "answers": {
+        "a": "[2, 3, 1, 4, 7, 8]",
+        "b": "[1, 4, 7, 2, 3, 8]",
+        "c": "[1, 2, 3, 4, 7, 8]",
+        "d": "[8, 7, 4, 3, 2, 1]"
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. The values are not maintained in ascending order.",
+        "b": "Incorrect. Concatenating the two subarrays does not produce a sorted sequence.",
+        "c": "Correct. Comparing the smallest remaining elements from the two subarrays produces the ascending sequence shown.",
+        "d": "Incorrect. This sequence is in descending order rather than ascending order."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "6. Why can a one-element subarray be considered sorted in merge sort?",
+      "answers": {
+        "a": "It contains the largest possible value.",
+        "b": "There is no pair of elements within it that can be out of order.",
+        "c": "It has already been compared with every other element.",
+        "d": "It does not need to be stored in memory."
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. A one-element subarray does not necessarily contain the largest value.",
+        "b": "Correct. With only one element, there is no second element with which it could be out of order.",
+        "c": "Incorrect. A one-element subarray does not need to have been compared with every other element.",
+        "d": "Incorrect. The element still needs to be stored while the algorithm executes."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "7. Which recurrence represents the running time of merge sort on an array of $N$ elements?",
+      "answers": {
+        "a": "$T(N)=T(N-1)+O(1)$",
+        "b": "$T(N)=T(N/2)+O(N)$",
+        "c": "$T(N)=2T(N/2)+O(N)$",
+        "d": "$T(N)=2T(N-1)+O(1)$"
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. This represents one recursive subproblem whose size decreases by one.",
+        "b": "Incorrect. Merge sort recursively processes two approximately equal subarrays.",
+        "c": "Correct. Merge sort creates two subproblems of approximately $N/2$ elements and performs $O(N)$ work to merge them.",
+        "d": "Incorrect. Merge sort does not recursively create two subproblems of size $N-1$."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "8. Why does merge sort have $O(N\\log N)$ time complexity even in the worst case?",
+      "answers": {
+        "a": "It performs only one comparison for the entire input.",
+        "b": "It divides the array into a logarithmic number of levels and performs linear total merging work at each level.",
+        "c": "It always removes half of the elements after every comparison.",
+        "d": "It uses constant space during every merge."
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. Sorting an array requires many comparisons and element-processing operations.",
+        "b": "Correct. The division creates approximately $\\log_2 N$ levels, while the total merging work at each level is $O(N)$.",
+        "c": "Incorrect. Merge sort does not remove elements while sorting them.",
+        "d": "Incorrect. Standard merge sort generally uses additional space during merging."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "9. Which statement about the merge phase of merge sort is correct when merging two sorted subarrays?",
+      "answers": {
+        "a": "Every element in the first subarray must be compared with every element in the second subarray.",
+        "b": "The two subarrays must first be shuffled randomly.",
+        "c": "The merge operation can use the sorted order of the two subarrays to process their elements efficiently.",
+        "d": "The merge operation ignores the values of the elements."
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. The merge operation does not require every possible pair of elements to be compared.",
+        "b": "Incorrect. Random shuffling would discard the useful ordering already established in the subarrays.",
+        "c": "Correct. Because both subarrays are already sorted, their elements can be compared from their current front positions to construct the merged result efficiently.",
+        "d": "Incorrect. The values determine which element should be placed next in the merged result."
+      },
+      "difficulty": "advanced"
     }
   ]
 }

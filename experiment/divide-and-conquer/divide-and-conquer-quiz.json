@@ -11,10 +11,10 @@
       },
       "correctAnswer": "b",
       "explanations": {
-        "a": "Incorrect. The correct order is to divide first, not conquer.",
-        "b": "Correct. First, divide the problem into smaller parts, then solve (conquer) each part, and finally combine the solutions.",
-        "c": "Incorrect. Combining comes after conquering (solving) the subproblems, not before.",
-        "d": "Incorrect. The correct order is to divide first, not combine."
+        "a": "Incorrect. The divide-and-conquer process begins by dividing the original problem into smaller subproblems.",
+        "b": "Correct. The strategy first divides the problem, then solves the smaller subproblems, and finally combines their results.",
+        "c": "Incorrect. The smaller subproblems must be solved before their results can be combined.",
+        "d": "Incorrect. Combining and conquering cannot occur before the original problem has been divided."
       },
       "difficulty": "beginner"
     },
@@ -28,12 +28,131 @@
       },
       "correctAnswer": "c",
       "explanations": {
-        "a": "Incorrect. Subproblems are solved independently, not depending on each other's results.",
-        "b": "Incorrect. While subproblems can sometimes be solved at the same time, the key point is that they are independent, not necessarily concurrent.",
-        "c": "Correct. Each subproblem can be solved on its own, without needing results from the others.",
-        "d": "Incorrect. 'In parallel' means at the exact same time, but the main idea is independence, not parallelism."
+        "a": "Incorrect. The defining idea is that each subproblem can be handled without requiring the solution to another subproblem.",
+        "b": "Incorrect. Subproblems may sometimes be processed concurrently, but concurrency is not required by the divide-and-conquer strategy.",
+        "c": "Correct. Each subproblem can be solved independently before the results are combined.",
+        "d": "Incorrect. Parallel execution is an implementation possibility, but it is not a requirement of divide and conquer."
       },
       "difficulty": "beginner"
+    },
+    {
+      "question": "3. Which of the following is an example of the divide-and-conquer approach?",
+      "answers": {
+        "a": "Merge sort",
+        "b": "Linear search",
+        "c": "Counting the number of elements in an array",
+        "d": "Finding the sum using a single loop"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Merge sort divides the input into smaller subproblems, solves them recursively, and combines their results.",
+        "b": "Incorrect. A standard linear search does not recursively divide the input into smaller subproblems.",
+        "c": "Incorrect. Simply counting elements does not require the divide-and-conquer strategy.",
+        "d": "Incorrect. A single-loop summation does not use recursive division and combination."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "4. In merge sort, what represents the \"divide\" step of the divide-and-conquer strategy?",
+      "answers": {
+        "a": "Combining two sorted subarrays",
+        "b": "Splitting the array into smaller subarrays",
+        "c": "Comparing every pair of elements",
+        "d": "Removing duplicate elements"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. Combining sorted subarrays belongs to the combine phase.",
+        "b": "Correct. Merge sort divides the original problem by repeatedly splitting the array into smaller subarrays.",
+        "c": "Incorrect. Merge sort does not require comparing every possible pair of elements.",
+        "d": "Incorrect. Removing duplicate elements is not a required step in merge sort."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "5. In a divide-and-conquer algorithm, what is the purpose of the conquer step?",
+      "answers": {
+        "a": "Divide the original problem into more subproblems",
+        "b": "Solve the smaller subproblems",
+        "c": "Randomly rearrange the input",
+        "d": "Delete the original input"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. Creating smaller subproblems belongs to the divide step.",
+        "b": "Correct. The conquer step solves the smaller subproblems, often recursively.",
+        "c": "Incorrect. Random rearrangement is not the purpose of the conquer step.",
+        "d": "Incorrect. Deleting the original input is not a requirement of divide and conquer."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "6. Why is merge sort considered a divide-and-conquer algorithm?",
+      "answers": {
+        "a": "It divides the input into smaller subarrays, recursively sorts them, and combines the sorted results.",
+        "b": "It always selects the largest element first.",
+        "c": "It solves the entire array using only one comparison.",
+        "d": "It removes half of the elements before sorting."
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Merge sort follows the divide, conquer, and combine pattern by recursively sorting smaller subarrays and then merging them.",
+        "b": "Incorrect. Selecting the largest element first is not the defining feature of merge sort.",
+        "c": "Incorrect. Sorting the entire array requires many operations rather than a single comparison.",
+        "d": "Incorrect. Merge sort does not discard half of the input elements."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "7. If a divide-and-conquer algorithm divides a problem of size $N$ into two subproblems of size approximately $N/2$, what happens to the number of subproblems after each division level?",
+      "answers": {
+        "a": "It approximately doubles.",
+        "b": "It remains constant.",
+        "c": "It becomes zero.",
+        "d": "It is always reduced by one."
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Dividing each existing subproblem into two creates approximately twice as many subproblems at the next level.",
+        "b": "Incorrect. The number of subproblems changes when each problem is divided into two.",
+        "c": "Incorrect. Division creates smaller subproblems rather than eliminating all subproblems.",
+        "d": "Incorrect. The number of subproblems is not reduced by one at each level."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "8. For a balanced divide-and-conquer algorithm that repeatedly halves a problem of size $N$, approximately how many levels of division are required to reach subproblems of size $1$?",
+      "answers": {
+        "a": "$N$",
+        "b": "$N^2$",
+        "c": "$\\log_2 N$",
+        "d": "2N"
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. Repeated halving reaches size $1$ in far fewer than $N$ levels.",
+        "b": "Incorrect. The number of division levels does not grow quadratically with the input size.",
+        "c": "Correct. Repeatedly halving $N$ requires approximately $\\log_2 N$ levels to reach a subproblem size of $1$.",
+        "d": "Incorrect. The number of levels grows logarithmically rather than linearly as $2N$."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "9. Which expression best represents the recurrence for an algorithm that divides a problem of size $N$ into two subproblems of size $N/2$ and performs $O(N)$ work to combine their results?",
+      "answers": {
+        "a": "$T(N)=T(N-1)+O(1)$",
+        "b": "$T(N)=2T(N/2)+O(N)$",
+        "c": "$T(N)=T(N/2)+O(1)$",
+        "d": "$T(N)=2T(N-1)+O(N)$"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. This describes one recursive subproblem whose size decreases by one.",
+        "b": "Correct. Two subproblems of size approximately $N/2$ contribute the recursive terms, while the combination work contributes $O(N)$.",
+        "c": "Incorrect. This recurrence contains only one recursive subproblem and does not represent the stated division.",
+        "d": "Incorrect. The recursive subproblems have size approximately $N/2$, not $N-1$."
+      },
+      "difficulty": "advanced"
     }
   ]
 }
