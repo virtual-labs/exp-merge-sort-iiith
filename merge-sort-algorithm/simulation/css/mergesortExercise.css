@@ -1,0 +1,166 @@
+.collapsible {
+  background-color: #f1f1f1;
+  color: #333;
+  cursor: pointer;
+  padding: 8px 16px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 1.1em;
+  margin-bottom: 4px;
+}
+
+.collapsible.active,
+.collapsible:hover {
+  background-color: #e2e2e2;
+}
+
+.content {
+  display: none;
+  padding: 0 18px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.content ol,
+.content ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.content li {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+#answerBox {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #aaa;
+  margin: 10px auto 15px auto;
+  width: 90%;
+  background: #fafafa;
+  padding: 10px;
+  text-align: left;
+  position: relative;
+  z-index: 5;
+}
+
+#successBox {
+  color: green !important;
+  font-weight: bold !important;
+  font-size: 1.2em !important;
+  margin: 15px auto !important;
+  display: none;
+  padding: 15px !important;
+  border: 2px solid green !important;
+  border-radius: 5px !important;
+  background-color: #f0fff0 !important;
+  text-align: center !important;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  z-index: 10;
+  clear: both;
+}
+
+#parent {
+  text-align: center;
+  width: 100%;
+  overflow: visible;
+  min-height: 100vh;
+}
+
+#container {
+  display: inline-block;
+  width: 785px;
+  height: 610px;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.jsavcanvas {
+  overflow: hidden;
+}
+
+.jsavarray {
+  position: absolute;
+}
+
+.jsavcontainer {
+  overflow: visible;
+}
+
+.jsavhighlight {
+  font-size: 110%;
+}
+
+.button-input {
+  margin: 5px 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.button-input:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  #container {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .content {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .content li {
+    margin: 8px 0;
+  }
+
+  .button-input {
+    display: block;
+    width: 80%;
+    max-width: 200px;
+    margin: 10px auto;
+    padding: 12px;
+  }
+
+  #answerBox {
+    width: 95%;
+    font-size: 14px;
+  }
+
+  .jsavarray {
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+
+  #successBox {
+    font-size: 1.1em;
+    margin: 15px 5px;
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .jsavarray {
+    transform: scale(0.7);
+  }
+
+  #container {
+    min-height: 300px;
+  }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mergesort Proficiency Exercise</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="static/lib/JSAV/css/JSAV.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="static/lib/ODSA/odsaAV-min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="static/lib/ODSA/odsaStyle-min.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/mergesortExercise.css" type="text/css" />
+  </head>
+
+  <body onload="">
+    <div id="parent">
+      <div class="instruction-box">
+        <button class="collapsible" id="instructionsToggle">
+          Instructions
+        </button>
+        <div class="content" id="instructionsContent" style="display: none">
+          <ul>
+            <li>
+              <strong>Goal:</strong> Practice the merge sort algorithm by
+              manually merging smaller sorted arrays into larger ones.
+            </li>
+            <li>
+              <strong>How merge sort works:</strong> Start with single elements
+              at the bottom, merge pairs into sorted arrays of 2, then merge
+              those into arrays of 4, and so on until you have one completely
+              sorted array.
+            </li>
+            <li>
+              <strong>To merge two arrays:</strong>
+              <ol>
+                <li>
+                  Click on the smaller value from either left or right subarray
+                </li>
+                <li>
+                  Click on the next empty position in the merged array above
+                </li>
+                <li>Repeat until both subarrays are empty</li>
+              </ol>
+            </li>
+            <li>
+              <strong>Rules:</strong>
+              <ul>
+                <li>
+                  Always choose the smallest available value from the front of
+                  either subarray
+                </li>
+                <li>
+                  You can only merge into the array directly above (one level
+                  up)
+                </li>
+                <li>If you make a mistake, you'll be prompted to try again</li>
+              </ul>
+            </li>
+            <li><strong>Controls:</strong></li>
+            <ul>
+              <li>Click <b>Reset</b> to start over with a new random array</li>
+              <li>
+                Click <b>Get Answer</b> to see the correct sequence of moves
+              </li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+      <div id="container">
+        <p class="jsavexercisecontrols" style="display: none"></p>
+        <form class="avcontainer">
+          <div id="arrays" class="jsavcanvas"></div>
+        </form>
+        <div id="allInput">
+          <button type="button" class="button-input" id="resetArt">
+            Reset
+          </button>
+          <button type="button" class="button-input" id="getAnswer">
+            Get Answer
+          </button>
+        </div>
+        <div
+          id="answerBox"
+          style="
+            display: none;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #aaa;
+            margin: 10px auto;
+            width: 90%;
+            background: #fafafa;
+            padding: 10px;
+            text-align: left;
+          "
+        >
+          <pre id="answerSequence" style="white-space: pre-wrap"></pre>
+        </div>
+        <div
+          id="successBox"
+          style="
+            display: none;
+            color: green;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px auto;
+          "
+        >
+          Congratulations! The array is fully sorted!
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="static/lib/JSAV/lib/jquery.transit.js"></script>
+    <script src="static/lib/JSAV/build/JSAV-min.js"></script>
+    <script src="static/lib/ODSA/odsaUtils-min.js"></script>
+    <script src="static/lib/ODSA/odsaAV-min.js"></script>
+    <script src="js/mergesortExercise.js"></script>
+  <script src="../../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>

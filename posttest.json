@@ -1,0 +1,158 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. What is the space complexity of the merge sort algorithm?",
+      "answers": {
+        "a": "O(N)",
+        "b": "O(2^N)",
+        "c": "O(1)",
+        "d": "O(N^2)"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Merge sort needs extra space to temporarily store merged results. The total extra space needed is proportional to the size of the array, so the space complexity is O(N).",
+        "b": "Incorrect. The extra space needed is much less than 2^N.",
+        "c": "Incorrect. Merge sort is not an in-place algorithm. It needs extra space to merge arrays.",
+        "d": "Incorrect. The extra space needed is much less than N^2, because the same temporary space is reused for subarrays."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "2. Consider the array: A = [8, 7, -2, 4, 1, 100, 0, -1]. Which of the following pairs of subarrays are merged together at some point during merge sort (assume ascending order)?",
+      "answers": {
+        "a": "[-2, 4] and [1, 100]",
+        "b": "[7, 8] and [-2, 4]",
+        "c": "[8, 7] and [-2, 4]",
+        "d": "[1, 4] and [0, 100]"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. These subarrays are separated early and only come together in the final merge, not as a pair.",
+        "b": "Correct. [7, 8] and [-2, 4] are merged together during the merge sort process.",
+        "c": "Incorrect. These subarrays are not merged directly as a pair.",
+        "d": "Incorrect. These subarrays are separated early and only come together in the final merge."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "3. Why is the time complexity of merge sort O(N log N)?",
+      "answers": {
+        "a": "N for dividing the array and log(N) for the number of division steps.",
+        "b": "N for merging subarrays and log(N) for the number of merge steps.",
+        "c": "N for the number of division steps and log(N) for dividing the array.",
+        "d": "N for the number of merge steps and log(N) for merging subarrays."
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. Dividing the array is fast and does not take much time.",
+        "b": "Correct. Each merge step processes all N elements, and there are about log(N) merge steps.",
+        "c": "Incorrect. The number of division steps is not N, and dividing is fast.",
+        "d": "Incorrect. Merging takes more time than log(N), and there are fewer than N merge steps."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. Consider the array: A = [0, -1, 100, 110, 1, 5]. Which of the following shows the correct steps in sorting this array using merge sort?",
+      "answers": {
+        "a": "[0, -1, 100, 110, 1, 5] → [0, -1, 100], [110, 1, 5] → [0], [-1, 100], [110], [1, 5] → [0], [-1], [100], [110], [1], [5] → [-1, 0], [100], [1, 110], [5] → [-1, 0, 100], [1, 5, 110] → [-1, 0, 1, 5, 100, 110]",
+        "b": "[0, -1, 100, 110, 1, 5] → [0, -1, 100], [110, 1, 5] → [0, -1], [100], [110, 1], [5] → [0], [-1], [100], [110], [1], [5] → [0], [-1, 100], [110], [1, 5] → [-1, 0, 100], [1, 5, 110] → [-1, 0, 1, 5, 100, 110]",
+        "c": "[0, -1, 100, 110, 1, 5] → [0, -1, 100], [110, 1, 5] → [0], [-1, 100], [110], [1, 5] → [0], [-1], [100], [110], [1], [5] → [0], [-1, 100], [110], [1, 5] → [-1, 0, 100], [1, 5, 110] → [-1, 0, 1, 5, 100, 110]",
+        "d": "[0, -1, 100, 110, 1, 5] → [0, -1, 100], [110, 1, 5] → [0], [-1, 100], [110, 1], [5] → [0], [-1], [100], [110], [1], [5] → [0], [-1, 100], [1, 110], [5] → [-1, 0, 100], [1, 5, 110] → [-1, 0, 1, 5, 100, 110]"
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. The merging order is not correct for merge sort.",
+        "b": "Incorrect. The merging order is not correct for merge sort.",
+        "c": "Correct. This sequence shows the correct steps for merge sort on the given array.",
+        "d": "Incorrect. The division and merging order is not correct for merge sort."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "5. When merging two sorted subarrays in ascending order, which element should normally be selected next?",
+      "answers": {
+        "a": "The larger of the first remaining elements",
+        "b": "The smaller of the first remaining elements",
+        "c": "The element from the longer subarray",
+        "d": "The element from the subarray containing fewer elements"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. Selecting the larger element can place values out of ascending order.",
+        "b": "Correct. Selecting the smaller of the two first remaining elements maintains ascending order in the merged subarray.",
+        "c": "Incorrect. The length of a subarray does not determine which element should be selected.",
+        "d": "Incorrect. The number of remaining elements does not determine which value comes next."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "6. If an array contains $8$ elements, how many splitting levels are required to reach subarrays containing one element?",
+      "answers": {
+        "a": "2",
+        "b": "3",
+        "c": "4",
+        "d": "8"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. Two splitting levels reduce the subarray size from $8$ to $2$, not to $1$.",
+        "b": "Correct. The sizes progress as $8 \\rightarrow 4 \\rightarrow 2 \\rightarrow 1$, requiring three splitting levels.",
+        "c": "Incorrect. The single-element subarrays are reached after three splitting levels.",
+        "d": "Incorrect. The number of splitting levels grows logarithmically rather than being equal to the number of elements."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "7. Which recurrence most accurately represents the time complexity of merge sort for $N$ elements?",
+      "answers": {
+        "a": "$T(N)=T(N-1)+O(1)$",
+        "b": "$T(N)=T(N/2)+O(N)$",
+        "c": "$T(N)=2T(N/2)+O(N)$",
+        "d": "$T(N)=2T(N-1)+O(1)$"
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. This recurrence represents a single recursive subproblem whose size decreases by one.",
+        "b": "Incorrect. Merge sort recursively processes two approximately equal subarrays, not just one.",
+        "c": "Correct. Merge sort creates two subproblems of approximately $N/2$ elements and performs $O(N)$ work to merge them.",
+        "d": "Incorrect. Merge sort does not create two subproblems of size $N-1$."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "8. Which property can make a standard merge sort implementation stable?",
+      "answers": {
+        "a": "Choosing the left subarray's element first when two compared keys are equal",
+        "b": "Randomly selecting between equal elements",
+        "c": "Reversing the order of equal elements during every merge",
+        "d": "Removing duplicate elements before merging"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Choosing the element from the left subarray first when keys are equal can preserve the original relative order of equal elements.",
+        "b": "Incorrect. Random selection can change the relative order of equal elements.",
+        "c": "Incorrect. Reversing equal elements would not preserve their original relative order.",
+        "d": "Incorrect. Removing duplicates changes the input data and is not required for stability."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "9. Why does merge sort have approximately $\\log_2 N$ levels of division for $N$ elements?",
+      "answers": {
+        "a": "Each level approximately doubles the number of elements in the original array.",
+        "b": "Each level removes one element from the array.",
+        "c": "Each level performs $N$ comparisons.",
+        "d": "Each level approximately halves the size of every active subarray."
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. During the division phase, the size of each active subarray decreases rather than doubles.",
+        "b": "Incorrect. A division level does not remove a single element from the input.",
+        "c": "Incorrect. The number of comparisons is not the reason the number of division levels is logarithmic.",
+        "d": "Correct. Each division level approximately halves the size of every active subarray, so about $\\log_2 N$ levels are needed to reach size $1$."
+      },
+      "difficulty": "advanced"
+    }
+  ]
+}
