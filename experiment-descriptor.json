@@ -2,6 +2,7 @@
   "unit-type": "lu",
   "label": "Mege Sort Experiment",
   "basedir": ".",
+  "LaTeXinMD": "true",
   "code-assessment": {
     "include": true,
     "languages": ["javascript"],
@@ -40,8 +41,8 @@
         {
           "unit-type": "aim"
         },
-        
-	{
+
+        {
           "unit-type": "task",
           "label": "What is Divide and Conquer",
           "content-type": "video",
@@ -55,15 +56,14 @@
           "source": "sorting-as-a-d-and-c-problem.md",
           "target": "sorting-as-a-d-and-c-problem.html"
         },
-                
-	{
-         "unit-type": "task",
-         "label": "Quiz",
-         "content-type": "assesment",
-         "source": "divide-and-conquer-quiz.json",
-         "target": "divide-and-conquer-quiz.html"
-       }
-      
+
+        {
+          "unit-type": "task",
+          "label": "Quiz",
+          "content-type": "assesment",
+          "source": "divide-and-conquer-quiz.json",
+          "target": "divide-and-conquer-quiz.html"
+        }
       ]
     },
     {
@@ -88,14 +88,14 @@
           "source": "simulation/mergesortDemo.html",
           "target": "mergesortDemo.html"
         },
-	{
+        {
           "unit-type": "task",
           "label": "Practice",
           "content-type": "simulation",
           "source": "simulation/mergesortPractice.html",
           "target": "mergesortPractice.html"
         },
-	{
+        {
           "unit-type": "task",
           "label": "Exercise ",
           "content-type": "simulation",
@@ -103,15 +103,15 @@
           "target": "mergesortExercise.html"
         },
         {
-         "unit-type": "task",
-         "label": "Quiz",
-         "content-type": "assesment",
-         "source": "merge-sort-quiz.json",
-         "target": "merge-sort-quiz.html"
-       }
+          "unit-type": "task",
+          "label": "Quiz",
+          "content-type": "assesment",
+          "source": "merge-sort-quiz.json",
+          "target": "merge-sort-quiz.html"
+        }
       ]
     },
-        {
+    {
       "unit-type": "lu",
       "label": "Analysis",
       "basedir": "analysis",
@@ -119,7 +119,7 @@
         {
           "unit-type": "aim"
         },
-	{
+        {
           "unit-type": "task",
           "label": "Overview",
           "content-type": "video",
@@ -140,7 +140,7 @@
           "source": "stable-and-comparison-sort.md",
           "target": "stable-and-comparison-sort.html"
         },
-       	{
+        {
           "unit-type": "task",
           "label": "Comparison with other Algorithms",
           "content-type": "video",
@@ -156,7 +156,7 @@
         }
       ]
     },
-    
+
     {
       "unit-type": "task",
       "label": "Posttest",
@@ -164,7 +164,7 @@
       "source": "posttest.json",
       "target": "posttest.html"
     },
-       
+
     {
       "unit-type": "task",
       "label": "Further Readings/References",
