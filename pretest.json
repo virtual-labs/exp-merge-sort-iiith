@@ -1,0 +1,158 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. Which of the following is an array that does NOT have all elements of the same type?",
+      "answers": {
+        "a": "[1, 4, 3, 10]",
+        "b": "[\"A\", true, \"Yes\", \"Hello world\"]",
+        "c": "[\"Test\", \"False\", \"x\", \"hi\"]",
+        "d": "[true, false, false, true]"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. All the elements are integers.",
+        "b": "Correct. This array contains both strings and a boolean value, so not all elements are of the same type.",
+        "c": "Incorrect. All the elements are strings.",
+        "d": "Incorrect. All the elements are boolean values."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "2. Which of the following arrays is sorted in descending order?",
+      "answers": {
+        "a": "[-17, -14, -8, -19]",
+        "b": "[-17, 20, 20, 100]",
+        "c": "[900, 14, -100, -1]",
+        "d": "[100, 100, 10, 0]"
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. The numbers do not decrease from left to right; -8 is greater than -14 and -17, so the order is not descending.",
+        "b": "Incorrect. This array is in ascending order, not descending.",
+        "c": "Incorrect. -1 is greater than -100, so the order is not descending.",
+        "d": "Correct. The numbers decrease or stay the same from left to right, so this is descending order."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "3. Consider the following arrays: A = [5, -5, 10, 1] and B = [0, 100, 1, 0]. Which of the following arrays shows all elements from both arrays combined and sorted in ascending order?",
+      "answers": {
+        "a": "[5, -5, 10, 1, 0, 100, 1, 0]",
+        "b": "[0, 100, 1, 0, 5, -5, 10, 1]",
+        "c": "[0, 0, 1, 1, -5, 5, 10, 100]",
+        "d": "[-5, 0, 0, 1, 1, 5, 10, 100]"
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. This just combines the two arrays without sorting.",
+        "b": "Incorrect. This just combines the two arrays without sorting.",
+        "c": "Incorrect. -5 should come before 0, since -5 is the smallest value.",
+        "d": "Correct. All elements from both arrays are present and sorted in ascending order."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. If you repeatedly split an array into a fixed number of smaller parts at each step, how does increasing the number of parts you split into at each step affect the total number of splitting rounds needed to break the array down? (Assume you always split into the same number of parts at each round.)",
+      "answers": {
+        "a": "The number of rounds does not change; it is independent of the number of parts per step.",
+        "b": "It depends on the situation.",
+        "c": "The number of rounds decreases as you increase the number of parts per step.",
+        "d": "The number of rounds increases as you increase the number of parts per step."
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. The number of rounds does change depending on how many parts you split into each time.",
+        "b": "Incorrect. There is a clear relationship: more parts per step means fewer rounds are needed.",
+        "c": "Correct. If you split into more parts each time, you reach the smallest pieces faster, so fewer rounds are needed.",
+        "d": "Incorrect. Increasing the number of parts per step actually reduces the number of rounds needed."
+      },
+      "difficulty": "Advanced"
+    },
+    {
+      "question": "5. In merge sort, why are the elements repeatedly divided until the subarrays contain only one element?",
+      "answers": {
+        "a": "A one-element subarray is already sorted and can be used as a base case.",
+        "b": "One-element subarrays always contain the smallest elements.",
+        "c": "One-element subarrays require no memory.",
+        "d": "Dividing into one-element subarrays makes the algorithm run in constant time."
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. A subarray containing one element is already sorted, so it provides the base case for the recursive process.",
+        "b": "Incorrect. A one-element subarray does not necessarily contain the smallest element of the input.",
+        "c": "Incorrect. A one-element subarray still requires memory to store its element.",
+        "d": "Incorrect. Reaching one-element subarrays does not make the complete sorting process constant time."
+      },
+      "difficulty": "Beginner"
+    },
+    {
+      "question": "6. For an array containing $N$ elements, approximately how many splitting levels are required in merge sort to reach subarrays containing one element?",
+      "answers": {
+        "a": "$N$",
+        "b": "$\\log_2 N$",
+        "c": "$N-1$",
+        "d": "$2N$"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. The number of splitting levels grows much more slowly than the number of elements.",
+        "b": "Correct. Since the array is approximately halved at each level, about $\\log_2 N$ levels are needed to reach subarrays of size $1$.",
+        "c": "Incorrect. $N-1$ is not the number of splitting levels in a balanced divide-and-conquer process.",
+        "d": "Incorrect. The number of splitting levels does not grow linearly as $2N$."
+      },
+      "difficulty": "Intermediate"
+    },
+    {
+      "question": "7. Which statement describes the base case of the recursive division process in merge sort?",
+      "answers": {
+        "a": "The process stops when every subarray contains two elements.",
+        "b": "The process stops when the original array is already sorted.",
+        "c": "The process stops when every subarray contains one element or is empty.",
+        "d": "The process stops after exactly two splitting levels."
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. A two-element subarray may still need to be divided.",
+        "b": "Incorrect. Whether the original array is sorted is not the recursive base case.",
+        "c": "Correct. An empty or one-element subarray is already sorted and forms the base case of merge sort.",
+        "d": "Incorrect. The number of splitting levels depends on the size of the input array."
+      },
+      "difficulty": "Intermediate"
+    },
+    {
+      "question": "8. When merging two sorted subarrays in ascending order, which operation is repeatedly performed?",
+      "answers": {
+        "a": "Compare the first remaining elements of both subarrays and copy the smaller one.",
+        "b": "Reverse both subarrays before combining them.",
+        "c": "Randomly select an element from either subarray.",
+        "d": "Sort both subarrays again before combining them."
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Comparing the first unmerged elements and selecting the smaller one allows the merged array to remain sorted.",
+        "b": "Incorrect. Reversing the subarrays is not required for an ascending merge.",
+        "c": "Incorrect. Random selection does not guarantee that the resulting array remains sorted.",
+        "d": "Incorrect. The subarrays are already sorted, so sorting them again is unnecessary."
+      },
+      "difficulty": "Advanced"
+    },
+    {
+      "question": "9. Which expression best represents the worst-case time complexity of merge sort for an array containing $N$ elements?",
+      "answers": {
+        "a": "$O(N)$",
+        "b": "$O(N^2)$",
+        "c": "$O(\\log N)$",
+        "d": "$O(N\\log N)$"
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. Merge sort performs more than a single linear pass over the data.",
+        "b": "Incorrect. The balanced divide-and-conquer structure results in a lower growth rate than quadratic time.",
+        "c": "Incorrect. The logarithmic term represents the number of division levels rather than the total amount of work.",
+        "d": "Correct. Merge sort has approximately $\\log_2 N$ levels, with $O(N)$ merging work across each level, resulting in $O(N\\log N)$ time."
+      },
+      "difficulty": "Advanced"
+    }
+  ]
+}

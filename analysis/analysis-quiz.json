@@ -1,0 +1,158 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. What is the complexity of merging two subarrays in the merge sort algorithm? Assume the sizes to be M and N.",
+      "answers": {
+        "a": "O(M + N)",
+        "b": "O(M * N)",
+        "c": "O(M * N^2)",
+        "d": "O((M * N) ^ 2)"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Merging two sorted subarrays requires processing their elements in order, resulting in O(M + N) time.",
+        "b": "Incorrect. Merging does not require comparing every element of one subarray with every element of the other.",
+        "c": "Incorrect. The merge operation does not require a cubic relationship between the sizes of the two subarrays.",
+        "d": "Incorrect. The merge operation does not require a squared product of the two subarray sizes."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "2. Which of the following algorithms perform better than merge sort in the worst case time complexity?",
+      "answers": {
+        "a": "Heap Sort",
+        "b": "Quick Sort",
+        "c": "Both a and b",
+        "d": "None of the above"
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. Heap sort has the same worst-case asymptotic time complexity as merge sort, so it does not have a better worst-case complexity.",
+        "b": "Incorrect. Standard quicksort can have O(N^2) worst-case time complexity, which is worse than merge sort's O(N log N).",
+        "c": "Incorrect. Neither heap sort nor standard quicksort has a better worst-case asymptotic complexity than merge sort.",
+        "d": "Correct. Merge sort has O(N log N) worst-case time complexity, heap sort also has O(N log N), and standard quicksort can have O(N^2) in the worst case."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "3. In merge sort, what is the time complexity of finding the midpoint of the current subarray to determine where it should be divided?",
+      "answers": {
+        "a": "O(1)",
+        "b": "O(N)",
+        "c": "O(N log N)",
+        "d": "O(N^2)"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. Once the boundaries of the current subarray are known, calculating its midpoint requires a constant number of arithmetic operations, so it takes O(1) time.",
+        "b": "Incorrect. Finding the midpoint does not require examining every element of the current subarray.",
+        "c": "Incorrect. O(N log N) describes the overall time complexity of merge sort, not the operation of finding one midpoint.",
+        "d": "Incorrect. Finding one midpoint does not require a quadratic number of operations."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. What will be the maximum possible array size at the ith level of the merge sort tree for an array of size N (assume level indexing starts from 0, i.e, the original array at the root is said to be at the 0th level)? Fractional results will be rounded up to the nearest integer.",
+      "answers": {
+        "a": "2^i * N",
+        "b": "i * N",
+        "c": "N / i",
+        "d": "N / 2^i"
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. Increasing the number of parts created at each level changes how quickly the subproblems reach the base case.",
+        "b": "Incorrect. Under the stated assumption that the same number of parts is used at every level, the number of splitting rounds follows a predictable relationship with the number of parts.",
+        "c": "Correct. Dividing the problem into more parts at each level reduces the number of levels needed to reach the smallest subproblems.",
+        "d": "Incorrect. Increasing the number of parts produced at each level does not increase the number of levels needed to reach the base case."
+      },
+      "difficulty": "advanced"
+    },
+    {
+      "question": "5. What is the main purpose of the merge operation in merge sort?",
+      "answers": {
+        "a": "To combine two sorted subarrays into one sorted subarray",
+        "b": "To randomly rearrange the elements of an array",
+        "c": "To divide an array into two smaller arrays",
+        "d": "To remove duplicate elements from an array"
+      },
+      "correctAnswer": "a",
+      "explanations": {
+        "a": "Correct. The merge operation combines two sorted subarrays while maintaining the required order.",
+        "b": "Incorrect. Randomly rearranging elements does not ensure that the resulting array is sorted.",
+        "c": "Incorrect. Dividing the array is part of the divide phase rather than the merge operation.",
+        "d": "Incorrect. Removing duplicate elements is not a required operation in merge sort."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "6. What happens to the size of each subarray when merge sort divides an array into two approximately equal parts?",
+      "answers": {
+        "a": "It approximately doubles.",
+        "b": "It remains unchanged.",
+        "c": "It is approximately halved.",
+        "d": "It becomes zero."
+      },
+      "correctAnswer": "c",
+      "explanations": {
+        "a": "Incorrect. The division process makes the subarrays smaller rather than larger.",
+        "b": "Incorrect. Division changes the size of the subarrays.",
+        "c": "Correct. Each division approximately halves the size of the current subarray.",
+        "d": "Incorrect. The elements are divided among smaller subarrays; they are not removed."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "7. Which of the following is the base case for recursively dividing an array in merge sort?",
+      "answers": {
+        "a": "An array containing $N/2$ elements",
+        "b": "An empty or one-element array",
+        "c": "An array containing $N$ elements",
+        "d": "An array containing exactly two elements"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. A subarray of size $N/2$ may still need to be divided further.",
+        "b": "Correct. An empty or one-element array is already sorted and therefore forms the base case.",
+        "c": "Incorrect. The original array generally requires recursive division.",
+        "d": "Incorrect. A two-element subarray may still need to be divided before the base case is reached."
+      },
+      "difficulty": "beginner"
+    },
+    {
+      "question": "8. If two sorted subarrays contain $M$ and $N$ elements, respectively, how many elements must be processed in total to produce their merged result?",
+      "answers": {
+        "a": "$M \\times N$",
+        "b": "$M + N$",
+        "c": "$M^2 + N^2$",
+        "d": "$ \\log(M + N) $"
+      },
+      "correctAnswer": "b",
+      "explanations": {
+        "a": "Incorrect. The merge operation does not need to compare every element of one subarray with every element of the other.",
+        "b": "Correct. Every element from both subarrays is processed once while constructing the merged result, giving $O(M+N)$ work.",
+        "c": "Incorrect. The merge operation does not require a quadratic number of operations in the sizes of the two subarrays.",
+        "d": "Incorrect. The number of elements processed is not logarithmic in the combined size."
+      },
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "9. Which statement best explains why the total merging work at one level of the merge sort tree is $O(N)$ for an array containing $N$ elements?",
+      "answers": {
+        "a": "Only one element is processed at each level.",
+        "b": "Every pair of elements is compared with each other.",
+        "c": "The number of subarrays becomes $N^2$ at every level.",
+        "d": "Across all merges at that level, each element is processed a constant number of times."
+      },
+      "correctAnswer": "d",
+      "explanations": {
+        "a": "Incorrect. The merge phase processes elements from all subarrays at that level.",
+        "b": "Incorrect. Merge sort does not compare every possible pair of elements during a merge.",
+        "c": "Incorrect. The number of subarrays increases as the tree expands, but not quadratically at every level.",
+        "d": "Correct. The subarrays at a level together contain all $N$ elements, and the merging work across that level is therefore $O(N)$."
+      },
+      "difficulty": "advanced"
+    }
+  ]
+}
