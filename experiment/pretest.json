@@ -133,7 +133,7 @@
         "a": "Correct. Comparing the first unmerged elements and selecting the smaller one allows the merged array to remain sorted.",
         "b": "Incorrect. Reversing the subarrays is not required for an ascending merge.",
         "c": "Incorrect. Random selection does not guarantee that the resulting array remains sorted.",
-        "d": "Incorrect. The subarrays are already sorted, so sorting them again is unnecessary."
+        "d": "Incorrect. The subarrays are already sorted by the recursive process; re-sorting them would be redundant and defeats the purpose of the divide-and-conquer approach."
       },
       "difficulty": "Advanced"
     },
@@ -149,7 +149,7 @@
       "explanations": {
         "a": "Incorrect. Merge sort performs more than a single linear pass over the data.",
         "b": "Incorrect. The balanced divide-and-conquer structure results in a lower growth rate than quadratic time.",
-        "c": "Incorrect. The logarithmic term represents the number of division levels rather than the total amount of work.",
+        "c": "Incorrect. O(log N) only accounts for the number of splitting levels, but at each level, O(N) work is done during merging. The total work across all levels gives O(N log N), not just O(log N).",
         "d": "Correct. Merge sort has approximately $\\log_2 N$ levels, with $O(N)$ merging work across each level, resulting in $O(N\\log N)$ time."
       },
       "difficulty": "Advanced"
